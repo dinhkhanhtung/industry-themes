@@ -1,14 +1,8 @@
 "use client";
 
-import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
-export const metadata: Metadata = {
-  title: "Bài Viết - Tranh Thêu Tay Hoa Thượng",
-  description: "Khám phá câu chuyện, tin tức và kiến thức về nghệ thuật thêu tay truyền thống.",
-};
 
 const blogPosts = [
   {
