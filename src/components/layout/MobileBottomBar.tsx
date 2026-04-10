@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Home, ShoppingBag, Phone, BookOpen, Search, User } from "lucide-react";
+import { Home, ShoppingBag, BookOpen, Search, User } from "lucide-react";
 
 const menuItems = [
   { href: "/", label: "Trang chủ", icon: Home },
