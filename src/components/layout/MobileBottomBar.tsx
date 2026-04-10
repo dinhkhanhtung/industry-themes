@@ -16,7 +16,7 @@ const menuItems = [
 export default function MobileBottomBar() {
   const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
-  const [cartCount, setCartCount] = useState(2); // Mock cart count
+  const [cartCount] = useState(2); // Mock cart count
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
