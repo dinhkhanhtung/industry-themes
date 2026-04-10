@@ -66,7 +66,7 @@ export default function Header() {
   return (
     <>
       <AnnouncementBar />
-      <header className="sticky top-0 z-50 bg-[#fffbf5] border-b border-[#e7e5e4]">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#fffbf5] border-b border-[#e7e5e4]">
         <div className="container mx-auto px-4 lg:px-8">
           {/* Row 1: Logo & Icons */}
           <div className="flex items-center justify-between h-[60px] lg:h-[70px]">
