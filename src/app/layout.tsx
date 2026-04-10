@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased pt-[110px] lg:pt-[120px]`} suppressHydrationWarning>
+      <body className={`${inter.variable} font-sans antialiased pt-[32px]`} suppressHydrationWarning>
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

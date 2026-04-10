@@ -14,7 +14,7 @@ const courses = [
     students: 120,
     lessons: 24,
     price: 1200000,
-    image: "https://images.unsplash.com/photo-1606293926075-69a00febf281?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600&q=80",
     features: [
       "24 bài giảng video chi tiết",
       "Tài liệu thực hành đầy đủ",
@@ -30,7 +30,7 @@ const courses = [
     students: 85,
     lessons: 36,
     price: 2000000,
-    image: "https://images.unsplash.com/photo-1582562124811-c8ed1b31bc3b?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=600&q=80",
     features: [
       "36 bài giảng chuyên sâu",
       "Kỹ thuật tạo chiều sâu",
@@ -46,7 +46,7 @@ const courses = [
     students: 60,
     lessons: 48,
     price: 3500000,
-    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1561839561-b13bcfe95249?w=600&q=80",
     features: [
       "48 bài giảng chuyên sâu",
       "Kỹ thuật thêu chân dung",
@@ -69,7 +69,7 @@ export default function CoursesPage() {
       {/* Hero Section */}
       <div className="relative h-[40vh] min-h-[300px] w-full overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1459749411177-047381bb3ece?w=1920&q=80"
+          src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=1920&q=80"
           alt="Khóa học thêu tay"
           fill
           className="object-cover"
