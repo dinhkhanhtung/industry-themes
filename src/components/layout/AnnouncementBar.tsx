@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function AnnouncementBar() {
   return (
-    <div className="bg-black text-white py-2 overflow-hidden">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-black text-white py-2 overflow-hidden">
       <motion.div
         className="flex whitespace-nowrap"
         animate={{ x: ["0%", "-50%"] }}

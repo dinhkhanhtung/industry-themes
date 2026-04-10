@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import MobileBottomBar from "@/components/layout/MobileBottomBar";
 import FloatingContactBar from "@/components/layout/FloatingContactBar";
+import AnnouncementBar from "@/components/layout/AnnouncementBar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,7 +25,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased pt-[32px]`} suppressHydrationWarning>
+      <body className={`${inter.variable} font-sans antialiased pt-[80px] lg:pt-[90px]`} suppressHydrationWarning>
+        <AnnouncementBar />
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
