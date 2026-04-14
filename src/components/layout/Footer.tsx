@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
-import { Facebook } from "@thesvg/react";
+import { Phone, Mail, MapPin, Facebook } from "lucide-react";
 import { useWebsite } from "@/context/WebsiteContext";
 
 const footerLinks = {
@@ -55,7 +54,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-4 pt-4">
               <a href={settings.contact.facebook} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[#b45309] hover:text-[#b45309] transition-all rounded-full">
-                <Facebook width={18} height={18} variant="mono" />
+                <Facebook size={18} />
               </a>
             </div>
           </div>
