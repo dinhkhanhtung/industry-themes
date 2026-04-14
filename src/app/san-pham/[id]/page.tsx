@@ -146,11 +146,11 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
         </div>
       </div>
 
-      {/* Product Detail */}
+      {/* Product Detail - Etsy Style */}
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Image Gallery - Vertical Thumbnails */}
-          <div className="flex gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          {/* Left: Image Gallery - 7 cols */}
+          <div className="lg:col-span-7 flex gap-4 lg:sticky lg:top-24 lg:self-start">
             {/* Vertical Thumbnails */}
             <div className="flex flex-col gap-3 w-20 shrink-0">
               {product.gallery.map((img, idx) => (
@@ -188,184 +188,188 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
             </div>
           </div>
 
-          {/* Product Info */}
-          <div className="space-y-6 relative">
-            {/* Wishlist Button - Top Right */}
-            <button className="absolute -top-2 right-0 p-3 border border-[#e7e5e4] hover:border-[#b45309] hover:text-[#b45309] transition-colors rounded-lg">
-              <Heart size={20} />
-            </button>
-            
-            <div>
-              <p className="text-sm text-[#b45309] mb-2">{product.category}</p>
-              <h1 className="text-3xl font-serif text-[#1c1917] mb-4 pr-14">{product.name}</h1>
-              
-              {/* Rating */}
-              <div className="flex items-center gap-2 mb-4">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={16}
-                      className={i < product.rating ? "fill-[#b45309] text-[#b45309]" : "text-[#e7e5e4]"}
-                    />
-                  ))}
-                </div>
-                <span className="text-sm text-[#57534e]">({product.reviewCount} đánh giá)</span>
-              </div>
-
-              {/* Price */}
-              <div className="flex items-baseline gap-3">
-                <span className="text-2xl font-medium text-[#b45309]">
-                  {formatPrice(product.price)}
-                </span>
-                {product.originalPrice && (
-                  <span className="text-lg text-[#57534e] line-through">
-                    {formatPrice(product.originalPrice)}
-                  </span>
-                )}
-              </div>
-            </div>
-
-            <p className="text-[#57534e] leading-relaxed">{product.description}</p>
-
-            {/* Color Selection */}
-            {product.colors && (
-              <div>
-                <p className="text-sm font-medium text-[#1c1917] mb-3">Màu sắc</p>
-                <div className="flex gap-3">
-                  {product.colors.map((color) => (
-                    <button
-                      key={color}
-                      onClick={() => setSelectedColor(color)}
-                      className={`w-10 h-10 rounded-full border-2 transition-all ${
-                        selectedColor === color ? "border-[#b45309] ring-2 ring-[#b45309]/20" : "border-[#e7e5e4]"
-                      }`}
-                      style={{ backgroundColor: color }}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Size Selection */}
-            {product.sizes && (
-              <div>
-                <p className="text-sm font-medium text-[#1c1917] mb-3">Kích thước</p>
-                <div className="flex gap-3">
-                  {product.sizes.map((size) => (
-                    <button
-                      key={size}
-                      onClick={() => setSelectedSize(size)}
-                      className={`px-4 py-2 border text-sm transition-all ${
-                        selectedSize === size 
-                          ? "border-[#b45309] bg-[#b45309] text-white" 
-                          : "border-[#e7e5e4] text-[#57534e] hover:border-[#b45309]"
-                      }`}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Quantity & Add to Cart */}
-            <div className="flex flex-col sm:flex-row gap-3">
-              <div className="flex items-center border border-[#e7e5e4] w-full sm:w-auto">
-                <button 
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="p-3 hover:bg-[#f5f5f4]"
-                >
-                  <Minus size={16} />
-                </button>
-                <span className="w-12 text-center text-sm">{quantity}</span>
-                <button 
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="p-3 hover:bg-[#f5f5f4]"
-                >
-                  <Plus size={16} />
-                </button>
-              </div>
-              <button 
-                onClick={handleAddToCart}
-                className={`flex-1 py-4 px-6 font-medium tracking-wide transition-all uppercase text-sm flex items-center justify-center gap-2 ${
-                  isAdded ? "bg-green-600 text-white" : "bg-[#1c1917] text-white hover:bg-[#b45309]"
-                }`}
-              >
-                {isAdded ? "Đã thêm vào giỏ" : "Thêm vào giỏ hàng"}
+          {/* Right: Purchase Box - 5 cols, Sticky */}
+          <div className="lg:col-span-5 lg:sticky lg:top-24 lg:self-start">
+            <div className="space-y-5 relative bg-white p-6 lg:border lg:border-[#e7e5e4] rounded-lg">
+              {/* Wishlist Button - Top Right */}
+              <button className="absolute top-4 right-4 p-2.5 border border-[#e7e5e4] hover:border-[#b45309] hover:text-[#b45309] transition-colors rounded-lg">
+                <Heart size={18} />
               </button>
-            </div>
-
-            {/* Stock Status */}
-            <div className="flex items-center gap-2 text-sm">
-              <CheckCircle2 className="text-green-500" size={16} />
-              <span className="text-green-600">Còn hàng - Giao hàng trong 2-3 ngày</span>
-            </div>
-
-            {/* Collapsible Sections */}
-            <div className="border-t border-[#e7e5e4] pt-6 space-y-4">
-              {/* Details */}
+              
               <div>
-                <button 
-                  onClick={() => toggleSection("details")}
-                  className="w-full flex items-center justify-between py-3 text-sm font-medium uppercase tracking-wider"
-                >
-                  <span>Chi tiết sản phẩm</span>
-                  <ChevronDown 
-                    size={20} 
-                    className={`transition-transform ${openSection === "details" ? "rotate-180" : ""}`} 
-                  />
-                </button>
-                <AnimatePresence>
-                  {openSection === "details" && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <ul className="pb-4 space-y-2 text-sm text-[#57534e]">
-                        {product.details.map((detail) => (
-                          <li key={detail.label} className="flex gap-2">
-                            <span className="text-[#1c1917] font-medium">{detail.label}:</span>
-                            <span>{detail.value}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </motion.div>
+                <p className="text-sm text-[#b45309] mb-1.5">{product.category}</p>
+                <h1 className="text-2xl lg:text-3xl font-serif text-[#1c1917] mb-3 pr-12">{product.name}</h1>
+                
+                {/* Rating */}
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        size={14}
+                        className={i < product.rating ? "fill-[#b45309] text-[#b45309]" : "text-[#e7e5e4]"}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-sm text-[#57534e]">({product.reviewCount} đánh giá)</span>
+                </div>
+
+                {/* Price */}
+                <div className="flex items-baseline gap-3">
+                  <span className="text-2xl font-medium text-[#b45309]">
+                    {formatPrice(product.price)}
+                  </span>
+                  {product.originalPrice && (
+                    <span className="text-lg text-[#57534e] line-through">
+                      {formatPrice(product.originalPrice)}
+                    </span>
                   )}
-                </AnimatePresence>
+                </div>
               </div>
 
-              {/* Shipping */}
-              <div className="border-t border-[#e7e5e4]">
+              <p className="text-[#57534e] leading-relaxed text-sm">{product.description}</p>
+
+              {/* Color Selection */}
+              {product.colors && (
+                <div>
+                  <p className="text-sm font-medium text-[#1c1917] mb-2">Màu sắc</p>
+                  <div className="flex gap-2">
+                    {product.colors.map((color) => (
+                      <button
+                        key={color}
+                        onClick={() => setSelectedColor(color)}
+                        className={`w-8 h-8 rounded-full border-2 transition-all ${
+                          selectedColor === color ? "border-[#b45309] ring-2 ring-[#b45309]/20" : "border-[#e7e5e4]"
+                        }`}
+                        style={{ backgroundColor: color }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Size Selection */}
+              {product.sizes && (
+                <div>
+                  <p className="text-sm font-medium text-[#1c1917] mb-2">Kích thước</p>
+                  <div className="flex gap-2 flex-wrap">
+                    {product.sizes.map((size) => (
+                      <button
+                        key={size}
+                        onClick={() => setSelectedSize(size)}
+                        className={`px-3 py-1.5 border text-sm transition-all ${
+                          selectedSize === size 
+                            ? "border-[#b45309] bg-[#b45309] text-white" 
+                            : "border-[#e7e5e4] text-[#57534e] hover:border-[#b45309]"
+                        }`}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Quantity & Add to Cart */}
+              <div className="space-y-3 pt-2">
+                <div className="flex items-center border border-[#e7e5e4] w-full">
+                  <button 
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="p-3 hover:bg-[#f5f5f4]"
+                  >
+                    <Minus size={16} />
+                  </button>
+                  <span className="flex-1 text-center text-sm">{quantity}</span>
+                  <button 
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="p-3 hover:bg-[#f5f5f4]"
+                  >
+                    <Plus size={16} />
+                  </button>
+                </div>
                 <button 
-                  onClick={() => toggleSection("shipping")}
-                  className="w-full flex items-center justify-between py-3 text-sm font-medium uppercase tracking-wider"
+                  onClick={handleAddToCart}
+                  className={`w-full py-4 px-6 font-medium tracking-wide transition-all uppercase text-sm flex items-center justify-center gap-2 ${
+                    isAdded ? "bg-green-600 text-white" : "bg-[#1c1917] text-white hover:bg-[#b45309]"
+                  }`}
                 >
-                  <span>Vận chuyển & Đổi trả</span>
-                  <ChevronDown 
-                    size={20} 
-                    className={`transition-transform ${openSection === "shipping" ? "rotate-180" : ""}`} 
-                  />
+                  {isAdded ? "Đã thêm vào giỏ" : "Thêm vào giỏ hàng"}
                 </button>
-                <AnimatePresence>
-                  {openSection === "shipping" && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="pb-4 space-y-3 text-sm text-[#57534e]">
-                        <p>• Miễn phí vận chuyển cho đơn hàng từ 500K</p>
-                        <p>• Giao hàng toàn quốc 2-5 ngày</p>
-                        <p>• Đổi trả trong 30 ngày nếu lỗi sản xuất</p>
-                        <p>• Hoàn tiền 100% nếu không hài lòng</p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+              </div>
+
+              {/* Stock Status */}
+              <div className="flex items-center gap-2 text-sm pt-2">
+                <CheckCircle2 className="text-green-500" size={16} />
+                <span className="text-green-600">Còn hàng - Giao trong 2-3 ngày</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Below: Product Details & Shipping - Full Width */}
+        <div className="mt-16 lg:mt-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+            {/* Left: Product Details */}
+            <div className="bg-[#f9f8f6] p-6 lg:p-8 rounded-lg">
+              <h3 className="text-lg font-medium text-[#1c1917] mb-6">Chi tiết sản phẩm</h3>
+              <ul className="space-y-3 text-sm text-[#57534e]">
+                {product.details.map((detail) => (
+                  <li key={detail.label} className="flex justify-between border-b border-[#e7e5e4] pb-3 last:border-0">
+                    <span className="text-[#1c1917] font-medium">{detail.label}</span>
+                    <span>{detail.value}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Right: Shipping & Returns */}
+            <div className="bg-[#f9f8f6] p-6 lg:p-8 rounded-lg">
+              <h3 className="text-lg font-medium text-[#1c1917] mb-6">Vận chuyển & Đổi trả</h3>
+              <div className="space-y-4 text-sm text-[#57534e]">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-[#b45309]/10 rounded-full flex items-center justify-center shrink-0">
+                    <svg className="w-4 h-4 text-[#b45309]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-medium text-[#1c1917]">Miễn phí vận chuyển</p>
+                    <p>Cho đơn hàng từ 500.000đ trở lên</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-[#b45309]/10 rounded-full flex items-center justify-center shrink-0">
+                    <svg className="w-4 h-4 text-[#b45309]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-medium text-[#1c1917]">Giao hàng nhanh</p>
+                    <p>2-5 ngày toàn quốc, giao tận nhà</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-[#b45309]/10 rounded-full flex items-center justify-center shrink-0">
+                    <svg className="w-4 h-4 text-[#b45309]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-medium text-[#1c1917]">Đổi trả dễ dàng</p>
+                    <p>30 ngày đổi trả nếu lỗi sản xuất</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-[#b45309]/10 rounded-full flex items-center justify-center shrink-0">
+                    <svg className="w-4 h-4 text-[#b45309]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-medium text-[#1c1917]">Bảo hành</p>
+                    <p>Hoàn tiền 100% nếu không hài lòng</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
