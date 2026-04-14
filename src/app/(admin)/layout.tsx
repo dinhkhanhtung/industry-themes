@@ -12,15 +12,16 @@ export const metadata: Metadata = {
   description: "Quản lý website bán tranh thêu tay",
 };
 
-// Admin root layout - children will be rendered by nested layouts
+// Admin layout - NO Header/Footer from main website
+// Uses its own sidebar navigation
 export default function AdminRootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi">
-      <body className={`${inter.variable} font-sans antialiased bg-[#f5f5f4]`}>
+    <html lang="vi" suppressHydrationWarning>
+      <body className={`${inter.variable} font-sans antialiased bg-[#fffbf5]`} suppressHydrationWarning>
         {children}
       </body>
     </html>
