@@ -126,7 +126,7 @@ export default function QuickViewModal({ isOpen, onClose, product }: QuickViewMo
               </div>
 
               {/* Right: Product Info */}
-              <div className="space-y-6 p-6 lg:p-8">
+              <div className="space-y-6 p-6 lg:p-8 pt-20 lg:pt-24">
                 <div>
                   <p className="text-sm text-[#b45309] mb-1">{product.category}</p>
                   <h2 className="text-2xl font-serif text-[#1c1917]">{product.name}</h2>
