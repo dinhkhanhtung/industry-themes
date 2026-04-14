@@ -125,7 +125,7 @@ export default function CourseDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fffbf5] pt-[80px] lg:pt-[90px]">
+    <div className="min-h-screen bg-[#fffbf5] pt-[140px] lg:pt-[160px]">
       <Toast toast={toast} onClose={hideToast} />
       
       {/* Breadcrumb */}

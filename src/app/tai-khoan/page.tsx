@@ -12,7 +12,7 @@ import {
   Star, Clock, Award, Package, Eye
 } from "lucide-react";
 import { db } from "@/lib/firebase";
-import { collection, query, where, orderBy, getDocs, Timestamp } from "firebase/firestore";
+import { collection, query, where, orderBy, getDocs, doc, getDoc, Timestamp } from "firebase/firestore";
 
 const tabs = [
   { id: "profile", label: "Hồ sơ", icon: User },
@@ -22,29 +22,18 @@ const tabs = [
   { id: "settings", label: "Cài đặt", icon: Settings },
 ];
 
-// Mock data
-const myCourses = [
-  {
-    id: 1,
-    title: "Thêu Cơ Bản: Hoa Cúc",
-    progress: 75,
-    totalLessons: 12,
-    completedLessons: 9,
-    thumbnail: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&q=80",
-    nextLesson: "Bài 10: Đường viền lá",
-    instructor: "Cô Hằng Khoa",
-  },
-  {
-    id: 2,
-    title: "Thêu Nâng Cao: Chim Hạc",
-    progress: 30,
-    totalLessons: 15,
-    completedLessons: 4,
-    thumbnail: "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=400&q=80",
-    nextLesson: "Bài 5: Lông chim chi tiết",
-    instructor: "Thầy Minh",
-  },
-];
+interface EnrolledCourse {
+  id: string;
+  courseId: string;
+  title: string;
+  instructor?: string;
+  thumbnail?: string;
+  progress: number;
+  totalLessons: number;
+  completedLessons: number;
+  nextLesson?: string;
+  lastAccessedLessonId?: string;
+}
 
 // Real order from Firebase
 interface Order {
@@ -79,6 +68,8 @@ export default function AccountPage() {
   const [activeTab, setActiveTab] = useState("profile");
   const [orders, setOrders] = useState<Order[]>([]);
   const [ordersLoading, setOrdersLoading] = useState(false);
+  const [enrolledCourses, setEnrolledCourses] = useState<EnrolledCourse[]>([]);
+  const [coursesLoading, setCoursesLoading] = useState(false);
 
   // Fetch orders from Firebase
   useEffect(() => {
@@ -112,6 +103,74 @@ export default function AccountPage() {
       fetchOrders();
     }
   }, [activeTab, session?.user?.email]);
+
+  // Fetch enrolled courses from Firebase
+  useEffect(() => {
+    const fetchEnrolledCourses = async () => {
+      if (!db || !session?.user?.id) return;
+      
+      setCoursesLoading(true);
+      try {
+        // Fetch enrollments
+        const enrollmentsRef = collection(db, "enrollments");
+        const q = query(
+          enrollmentsRef,
+          where("userId", "==", session.user.id)
+        );
+        const enrollmentSnap = await getDocs(q);
+        
+        const coursesData: EnrolledCourse[] = [];
+        
+        for (const enrollmentDoc of enrollmentSnap.docs) {
+          const enrollment = enrollmentDoc.data();
+          const courseId = enrollment.courseId;
+          
+          // Fetch course details
+          const courseRef = doc(db, "courses", courseId);
+          const courseSnap = await getDoc(courseRef);
+          
+          if (courseSnap.exists()) {
+            const courseData = courseSnap.data();
+            const totalLessons = courseData.lessons?.length || 0;
+            const completedLessons = enrollment.completedLessons?.length || 0;
+            const progress = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
+            
+            // Get next lesson title
+            let nextLesson: string | undefined;
+            if (enrollment.lastAccessedLessonId && courseData.lessons) {
+              const lastLesson = courseData.lessons.find((l: {id: string, title: string}) => l.id === enrollment.lastAccessedLessonId);
+              const lastIndex = courseData.lessons.findIndex((l: {id: string}) => l.id === enrollment.lastAccessedLessonId);
+              const nextLessonData = courseData.lessons[lastIndex + 1];
+              nextLesson = nextLessonData?.title || lastLesson?.title;
+            }
+            
+            coursesData.push({
+              id: enrollmentDoc.id,
+              courseId: courseId,
+              title: courseData.title || "Khóa học",
+              instructor: courseData.instructor,
+              thumbnail: courseData.image || courseData.thumbnail,
+              progress,
+              totalLessons,
+              completedLessons,
+              nextLesson,
+              lastAccessedLessonId: enrollment.lastAccessedLessonId,
+            });
+          }
+        }
+        
+        setEnrolledCourses(coursesData);
+      } catch (error) {
+        console.error("Error fetching enrolled courses:", error);
+      } finally {
+        setCoursesLoading(false);
+      }
+    };
+
+    if (activeTab === "courses") {
+      fetchEnrolledCourses();
+    }
+  }, [activeTab, session?.user?.id]);
 
   if (status === "loading" || typeof window === "undefined") {
     return (
@@ -266,49 +325,65 @@ export default function AccountPage() {
                 className="space-y-4"
               >
                 <h2 className="text-lg font-medium text-[#1c1917] mb-4">Khóa học của tôi</h2>
-                {myCourses.map((course) => (
-                  <div
-                    key={course.id}
-                    className="bg-white rounded-lg border border-[#e7e5e4] p-4 flex gap-4"
-                  >
-                    <div className="relative w-32 h-24 shrink-0">
-                      <Image
-                        src={course.thumbnail}
-                        alt={course.title}
-                        fill
-                        className="rounded-lg object-cover"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-medium text-[#1c1917] mb-1">{course.title}</h3>
-                      <p className="text-sm text-[#57534e] mb-2">Giảng viên: {course.instructor}</p>
-                      <div className="flex items-center gap-4 text-xs text-[#57534e] mb-3">
-                        <span className="flex items-center gap-1">
-                          <Clock size={12} />
-                          Bài tiếp theo: {course.nextLesson}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <div className="flex-1 h-2 bg-[#e7e5e4] rounded-full overflow-hidden">
-                          <div
-                            className="h-full bg-[#b45309] rounded-full"
-                            style={{ width: `${course.progress}%` }}
-                          />
-                        </div>
-                        <span className="text-sm font-medium text-[#b45309]">{course.progress}%</span>
-                      </div>
-                      <p className="text-xs text-[#57534e] mt-2">
-                        {course.completedLessons}/{course.totalLessons} bài học
-                      </p>
-                    </div>
-                    <Link
-                      href={`/khoa-hoc/${course.id}`}
-                      className="shrink-0 self-center p-2 text-[#b45309] hover:bg-[#b45309]/10 rounded-lg transition-colors"
-                    >
-                      <ChevronRight size={20} />
+                {coursesLoading ? (
+                  <div className="flex justify-center py-12">
+                    <div className="animate-spin w-8 h-8 border-2 border-[#b45309] border-t-transparent rounded-full"></div>
+                  </div>
+                ) : enrolledCourses.length === 0 ? (
+                  <div className="text-center py-12 bg-white rounded-lg border border-[#e7e5e4]">
+                    <BookOpen size={48} className="mx-auto text-[#a8a29e] mb-4" />
+                    <p className="text-[#57534e]">Bạn chưa đăng ký khóa học nào</p>
+                    <Link href="/khoa-hoc" className="text-[#b45309] hover:underline mt-2 inline-block">
+                      Khám phá khóa học
                     </Link>
                   </div>
-                ))}
+                ) : (
+                  enrolledCourses.map((course: EnrolledCourse) => (
+                    <div
+                      key={course.id}
+                      className="bg-white rounded-lg border border-[#e7e5e4] p-4 flex gap-4"
+                    >
+                      <div className="relative w-32 h-24 shrink-0">
+                        <Image
+                          src={course.thumbnail || "https://via.placeholder.com/128x96"}
+                          alt={course.title}
+                          fill
+                          className="rounded-lg object-cover"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-medium text-[#1c1917] mb-1">{course.title}</h3>
+                        <p className="text-sm text-[#57534e] mb-2">Giảng viên: {course.instructor || "Chưa có"}</p>
+                        {course.nextLesson && (
+                          <div className="flex items-center gap-4 text-xs text-[#57534e] mb-3">
+                            <span className="flex items-center gap-1">
+                              <Clock size={12} />
+                              Bài tiếp theo: {course.nextLesson}
+                            </span>
+                          </div>
+                        )}
+                        <div className="flex items-center gap-3">
+                          <div className="flex-1 h-2 bg-[#e7e5e4] rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-[#b45309] rounded-full"
+                              style={{ width: `${course.progress}%` }}
+                            />
+                          </div>
+                          <span className="text-sm font-medium text-[#b45309]">{course.progress}%</span>
+                        </div>
+                        <p className="text-xs text-[#57534e] mt-2">
+                          {course.completedLessons}/{course.totalLessons} bài học
+                        </p>
+                      </div>
+                      <Link
+                        href={`/hoc-tap/${course.courseId}/${course.lastAccessedLessonId || "lesson-1"}`}
+                        className="shrink-0 self-center p-2 text-[#b45309] hover:bg-[#b45309]/10 rounded-lg transition-colors"
+                      >
+                        <ChevronRight size={20} />
+                      </Link>
+                    </div>
+                  ))
+                )}
               </motion.div>
             )}
 
