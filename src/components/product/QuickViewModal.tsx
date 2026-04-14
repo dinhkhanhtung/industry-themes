@@ -64,16 +64,24 @@ export default function QuickViewModal({ isOpen, onClose, product }: QuickViewMo
             exit={{ opacity: 0, scale: 0.95 }}
             className="fixed inset-4 md:inset-10 lg:inset-20 bg-white z-50 overflow-auto"
           >
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center hover:bg-[#f5f5f4] transition-colors"
-            >
-              <X size={24} />
-            </button>
+            {/* Header Bar with Actions */}
+            <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between p-4 bg-white/80 backdrop-blur-sm border-b border-[#e7e5e4]">
+              <button
+                className="w-10 h-10 flex items-center justify-center border border-[#e7e5e4] rounded-lg hover:border-[#b45309] hover:text-[#b45309] transition-colors"
+              >
+                <Heart size={20} />
+              </button>
+              <button
+                onClick={onClose}
+                className="w-10 h-10 flex items-center justify-center hover:bg-[#f5f5f4] transition-colors rounded-lg"
+              >
+                <X size={24} />
+              </button>
+            </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
               {/* Left: Image Gallery */}
-              <div className="relative bg-[#f5f5f4] p-8 flex items-center justify-center">
+              <div className="relative bg-[#f5f5f4] p-8 pt-20 flex items-center justify-center">
                 <div className="relative w-full max-w-md aspect-square">
                   <Image
                     src={gallery[selectedImage]}
@@ -118,15 +126,10 @@ export default function QuickViewModal({ isOpen, onClose, product }: QuickViewMo
               </div>
 
               {/* Right: Product Info */}
-              <div className="space-y-6 relative">
-                {/* Wishlist Button - Top Right */}
-                <button className="absolute -top-2 right-0 p-3 border border-[#e7e5e4] hover:border-[#b45309] hover:text-[#b45309] transition-colors rounded-lg">
-                  <Heart size={20} />
-                </button>
-                
+              <div className="space-y-6 p-6 lg:p-8">
                 <div>
                   <p className="text-sm text-[#b45309] mb-1">{product.category}</p>
-                  <h2 className="text-2xl font-serif text-[#1c1917] pr-12">{product.name}</h2>
+                  <h2 className="text-2xl font-serif text-[#1c1917]">{product.name}</h2>
                 </div>
                 
                 {/* Rating */}
