@@ -27,6 +27,7 @@ export const metadata: Metadata = {
 
 import { CartProvider } from "@/context/CartContext";
 import { WebsiteProvider } from "@/context/WebsiteContext";
+import { SessionProvider } from "next-auth/react";
 
 export default function RootLayout({
   children,
@@ -36,17 +37,19 @@ export default function RootLayout({
   return (
     <html lang="vi" suppressHydrationWarning>
       <body className={`${beVietnamPro.variable} ${notoSans.variable} font-sans antialiased pt-[80px] lg:pt-[90px]`} suppressHydrationWarning>
-        <WebsiteProvider>
-          <CartProvider>
-            <AnnouncementBar />
-            <Header />
-            <main className="min-h-screen">{children}</main>
-            <Footer />
-            <BackToTop />
-            <MobileBottomBar />
-            <FloatingContactBar />
-          </CartProvider>
-        </WebsiteProvider>
+        <SessionProvider>
+          <WebsiteProvider>
+            <CartProvider>
+              <AnnouncementBar />
+              <Header />
+              <main className="min-h-screen">{children}</main>
+              <Footer />
+              <BackToTop />
+              <MobileBottomBar />
+              <FloatingContactBar />
+            </CartProvider>
+          </WebsiteProvider>
+        </SessionProvider>
       </body>
     </html>
   );

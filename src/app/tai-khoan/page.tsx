@@ -62,11 +62,13 @@ const myOrders = [
 ];
 
 export default function AccountPage() {
-  const { data: session, status } = useSession();
+  const sessionData = useSession();
+  const session = sessionData?.data;
+  const status = sessionData?.status;
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("profile");
 
-  if (status === "loading") {
+  if (status === "loading" || typeof window === "undefined") {
     return (
       <div className="min-h-screen bg-[#fffbf5] pt-[140px] lg:pt-[160px] flex items-center justify-center">
         <div className="animate-spin w-8 h-8 border-2 border-[#b45309] border-t-transparent rounded-full"></div>
@@ -75,7 +77,9 @@ export default function AccountPage() {
   }
 
   if (!session) {
-    router.push("/dang-nhap");
+    if (typeof window !== "undefined") {
+      router.push("/dang-nhap");
+    }
     return null;
   }
 
