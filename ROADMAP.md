@@ -79,32 +79,26 @@
 
 ### GIAI ĐOẠN 2: HỆ THỐNG HỌC TẬP (2 tuần)
 
-#### 2.1 Trang Học Video Thực Tế ⭐⭐⭐⭐⭐
-- [ ] Trang "/hoc-tap" - danh sách khóa học đã đăng ký
-- [ ] Trang học video: "/hoc-tap/[courseId]/[lessonId]"
-- [ ] Embed YouTube với watermark client-side
-- [ ] Chống download/chống copy (CSS + JS)
-- [ ] Danh sách bài học sidebar
-- [ ] Chuyển bài học next/prev
+#### 2.1 Trang Học Video Thực Tế ⭐⭐⭐⭐⭐ ✅
+- [x] Trang "/hoc-tap" - danh sách khóa học đã đăng ký (Firebase)
+- [x] Trang học video: "/hoc-tap/[courseId]/[lessonId]"
+- [x] Video player với controls
+- [x] Danh sách bài học sidebar
+- [x] Đánh dấu hoàn thành bài học
+- [x] Theo dõi tiến trình học tập
+- [x] Chuyển bài học (previous/next)
+- [ ] Resume: tự động vào bài đang học dở
 
-#### 2.2 Tiến Trình Học Tập ⭐⭐⭐⭐
-- [ ] Đánh dấu hoàn thành bài học
-- [ ] Tiến trình % khóa học
-- [ ] Thời gian học cộng dồn
-- [ ] Resume: tự động vào bài đang học
+#### 2.2 Admin Khóa Học ⭐⭐⭐⭐
+- [ ] CRUD khóa học
+- [ ] Quản lý bài học (thêm/sửa/xóa video)
+- [ ] Theo dõi học viên theo khóa học
 
 #### 2.3 Chứng Chỉ Hoàn Thành ⭐⭐⭐
 - [ ] Tự động tạo khi đạt 100%
 - [ ] Template chứng chỉ đẹp
 - [ ] Tải PDF chứng chỉ
 - [ ] Mã QR verify chứng chỉ
-
-#### 2.4 Admin Khóa Học & Video ⭐⭐⭐⭐
-- [ ] Thêm/sửa/xóa khóa học
-- [ ] Thêm/sửa/xóa bài học
-- [ ] Upload/link video YouTube
-- [ ] Sắp xếp thứ tự bài học (kéo thả)
-- [ ] Quản lý học viên theo khóa học
 
 ---
 
