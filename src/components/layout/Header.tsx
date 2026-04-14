@@ -81,10 +81,10 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-[32px] left-0 right-0 z-40 bg-[#fffbf5]/80 backdrop-blur-md border-b border-[#e7e5e4] transition-all duration-300">
+      <header className="fixed top-[40px] left-0 right-0 z-40 bg-[#fffbf5]/80 backdrop-blur-md border-b border-[#e7e5e4] transition-all duration-300">
         <div className="container mx-auto px-4 lg:px-8">
           {/* Row 1: Logo & Icons */}
-          <div className="flex items-center justify-between h-[60px] lg:h-[70px]">
+          <div className="flex items-center justify-between h-[64px] lg:h-[80px]">
             {/* Mobile Menu Button */}
             <button
               className="lg:hidden p-3 -ml-2 text-[#1c1917] hover:text-[#b45309] transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
@@ -99,11 +99,11 @@ export default function Header() {
                 {settings.brand.logo ? (
                   <img src={settings.brand.logo} alt={settings.brand.name} className="h-8 lg:h-10 w-auto object-contain" />
                 ) : (
-                  <div className="flex flex-col items-center">
-                    <div className="text-xl lg:text-2xl font-bold text-[#1c1917] tracking-wider uppercase">
+                  <div className="flex flex-col items-center max-w-[180px] lg:max-w-none">
+                    <div className="text-lg lg:text-2xl font-bold text-[#1c1917] tracking-wider uppercase leading-tight">
                       {settings.brand.name}
                     </div>
-                    <div className="text-[10px] lg:text-xs tracking-[0.4em] text-[#57534e] uppercase font-medium">
+                    <div className="text-[8px] lg:text-xs tracking-[0.15em] lg:tracking-[0.4em] text-[#57534e] uppercase font-medium mt-0.5 whitespace-nowrap lg:whitespace-normal">
                       {settings.brand.slogan}
                     </div>
                   </div>

@@ -9,7 +9,7 @@ export default function AnnouncementBar() {
   const formatPrice = (price: number) => new Intl.NumberFormat('vi-VN').format(price) + 'đ';
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-black text-white py-2 overflow-hidden">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-black text-white h-[40px] flex items-center overflow-hidden">
       <motion.div
         className="flex whitespace-nowrap"
         animate={{ x: ["0%", "-50%"] }}
