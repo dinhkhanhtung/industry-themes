@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Heart, ChevronRight, Star, 
+  Heart, ChevronRight, Star, X, ZoomIn,
   ChevronDown, Minus, Plus, CheckCircle2,
   Eye, MessageCircle, ShoppingBag, Truck, RefreshCw, Shield
 } from "lucide-react";
@@ -110,6 +110,8 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
   const [openSection, setOpenSection] = useState<string | null>("details");
   const [activeReviewTab, setActiveReviewTab] = useState("reviews");
   const [isAdded, setIsAdded] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState(0);
 
   const handleAddToCart = () => {
     addToCart({
@@ -177,7 +179,13 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
             </div>
             
             {/* Main Image */}
-            <div className="relative flex-1 aspect-[4/5] bg-[#f5f5f4] overflow-hidden">
+            <div 
+              className="relative flex-1 aspect-[4/5] bg-[#f5f5f4] overflow-hidden cursor-zoom-in group"
+              onClick={() => {
+                setLightboxImage(selectedImage);
+                setLightboxOpen(true);
+              }}
+            >
               {product.badge && (
                 <div className="absolute top-4 left-4 bg-[#b45309] text-white text-xs tracking-wider uppercase px-3 py-1.5 z-10">
                   {product.badge}
@@ -187,9 +195,15 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                 src={product.gallery[selectedImage]}
                 alt={product.name}
                 fill
-                className="object-cover"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
                 priority
               />
+              {/* Zoom Icon Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                <div className="bg-white/90 p-3 rounded-full shadow-lg">
+                  <ZoomIn size={24} className="text-[#1c1917]" />
+                </div>
+              </div>
             </div>
           </div>
 
@@ -531,6 +545,85 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
           </div>
         </div>
       </div>
+
+      {/* Lightbox - Fullscreen Image Viewer */}
+      <AnimatePresence>
+        {lightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
+            onClick={() => setLightboxOpen(false)}
+          >
+            {/* Close Button */}
+            <button
+              className="absolute top-4 right-4 p-3 text-white/80 hover:text-white transition-colors z-10"
+              onClick={() => setLightboxOpen(false)}
+            >
+              <X size={32} />
+            </button>
+
+            {/* Main Image */}
+            <div
+              className="relative w-full h-full max-w-6xl max-h-screen p-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={product.gallery[lightboxImage]}
+                alt={product.name}
+                fill
+                className="object-contain"
+                sizes="(max-width: 1200px) 100vw, 1200px"
+              />
+            </div>
+
+            {/* Thumbnails */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              {product.gallery.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxImage(idx);
+                  }}
+                  className={`w-16 h-16 overflow-hidden border-2 transition-colors ${
+                    lightboxImage === idx ? "border-[#b45309]" : "border-white/30"
+                  }`}
+                >
+                  <Image
+                    src={img}
+                    alt={`${product.name} ${idx + 1}`}
+                    width={64}
+                    height={64}
+                    className="object-cover w-full h-full"
+                  />
+                </button>
+              ))}
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-3 text-white/80 hover:text-white transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightboxImage((prev) => (prev === 0 ? product.gallery.length - 1 : prev - 1));
+              }}
+            >
+              <ChevronRight size={40} className="rotate-180" />
+            </button>
+            <button
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-3 text-white/80 hover:text-white transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightboxImage((prev) => (prev === product.gallery.length - 1 ? 0 : prev + 1));
+              }}
+            >
+              <ChevronRight size={40} />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -111,7 +111,7 @@ export default function Header() {
               </div>
             </Link>
 
-            {/* Right Icons */}
+            {/* Right Icons - Mobile: only Search + Cart (others in bottom bar) */}
             <div className="flex items-center space-x-1 lg:space-x-2 ml-auto">
               <button 
                 className="p-3 text-[#1c1917] hover:text-[#b45309] transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
@@ -119,18 +119,20 @@ export default function Header() {
               >
                 <Search size={20} />
               </button>
+              {/* Desktop only: Wishlist & Account (mobile has bottom bar) */}
               <Link
                 href="/yeu-thich"
-                className="p-3 text-[#1c1917] hover:text-[#b45309] transition-colors relative min-w-[44px] min-h-[44px] flex items-center justify-center"
+                className="hidden lg:flex p-3 text-[#1c1917] hover:text-[#b45309] transition-colors relative min-w-[44px] min-h-[44px] items-center justify-center"
               >
                 <Heart size={20} />
               </Link>
               <Link
                 href="/tai-khoan"
-                className="p-3 text-[#1c1917] hover:text-[#b45309] transition-colors relative min-w-[44px] min-h-[44px] flex items-center justify-center"
+                className="hidden lg:flex p-3 text-[#1c1917] hover:text-[#b45309] transition-colors relative min-w-[44px] min-h-[44px] items-center justify-center"
               >
                 <User size={20} />
               </Link>
+              {/* Cart: always visible for badge count */}
               <Link
                 href="/gio-hang"
                 className="p-3 text-[#1c1917] hover:text-[#b45309] transition-colors relative min-w-[44px] min-h-[44px] flex items-center justify-center"
