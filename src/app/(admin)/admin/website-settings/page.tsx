@@ -5,13 +5,14 @@ import {
   Globe, Phone, Clock, Save, Upload,
   Image as ImageIcon, Palette, Layout,
   CreditCard, Truck, Search as SearchIcon,
-  Facebook, Mail, MapPin, Zap, CheckCircle2
+  Facebook, Mail, MapPin, Zap, CheckCircle2,
+  Layers, BookOpen, FileText, GraduationCap
 } from "lucide-react";
 import { useWebsite } from "@/context/WebsiteContext";
 
 export default function WebsiteSettingsPage() {
   const { settings, updateSettings } = useWebsite();
-  const [activeTab, setActiveTab] = useState<"general" | "contact" | "seo" | "appearance" | "payment" | "shipping">("general");
+  const [activeTab, setActiveTab] = useState<"general" | "contact" | "seo" | "appearance" | "payment" | "shipping" | "modules">("general");
   const [tempSettings, setTempSettings] = useState(settings);
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
@@ -65,6 +66,7 @@ export default function WebsiteSettingsPage() {
                 { id: "appearance", label: "Giao diện", icon: Palette },
                 { id: "payment", label: "Thanh toán", icon: CreditCard },
                 { id: "shipping", label: "Vận chuyển", icon: Truck },
+                { id: "modules", label: "Tính năng", icon: Layers },
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -264,6 +266,98 @@ export default function WebsiteSettingsPage() {
                       onChange={(e) => setTempSettings({...tempSettings, seo: {...tempSettings.seo, keywords: e.target.value}})}
                       className="w-full px-4 py-3 border border-[#e7e5e4] rounded-xl outline-none" 
                     />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Modules Settings */}
+            {activeTab === "modules" && (
+              <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="flex items-center gap-4 pb-6 border-b border-[#e7e5e4]">
+                  <div className="w-12 h-12 bg-[#b45309]/10 rounded-2xl flex items-center justify-center text-[#b45309]">
+                    <Layers size={24} />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-bold text-[#1c1917]">Tính năng</h2>
+                    <p className="text-sm text-[#57534e]">Bật/tắt các chức năng của website</p>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  {/* Courses Toggle */}
+                  <div className="flex items-center justify-between p-4 border border-[#e7e5e4] rounded-xl">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600">
+                        <GraduationCap size={20} />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-[#1c1917]">Khóa học Online</h3>
+                        <p className="text-sm text-[#57534e]">Hiển thị trang khóa học và chức năng đào tạo</p>
+                      </div>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={tempSettings.modules?.courses ?? true}
+                        onChange={(e) => setTempSettings({
+                          ...tempSettings,
+                          modules: { ...tempSettings.modules, courses: e.target.checked }
+                        })}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#b45309]"></div>
+                    </label>
+                  </div>
+
+                  {/* Resources Toggle */}
+                  <div className="flex items-center justify-between p-4 border border-[#e7e5e4] rounded-xl">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center text-green-600">
+                        <FileText size={20} />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-[#1c1917]">Tài nguyên / Mẫu thêu</h3>
+                        <p className="text-sm text-[#57534e]">Hiển thị trang tải mẫu thêu miễn phí</p>
+                      </div>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={tempSettings.modules?.resources ?? true}
+                        onChange={(e) => setTempSettings({
+                          ...tempSettings,
+                          modules: { ...tempSettings.modules, resources: e.target.checked }
+                        })}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#b45309]"></div>
+                    </label>
+                  </div>
+
+                  {/* Blog Toggle */}
+                  <div className="flex items-center justify-between p-4 border border-[#e7e5e4] rounded-xl">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600">
+                        <BookOpen size={20} />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-[#1c1917]">Tin tức / Blog</h3>
+                        <p className="text-sm text-[#57534e]">Hiển thị trang tin tức và bài viết</p>
+                      </div>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={tempSettings.modules?.blog ?? true}
+                        onChange={(e) => setTempSettings({
+                          ...tempSettings,
+                          modules: { ...tempSettings.modules, blog: e.target.checked }
+                        })}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#b45309]"></div>
+                    </label>
                   </div>
                 </div>
               </div>

@@ -42,24 +42,29 @@ export interface WebsiteSettings {
       branch: string;
     };
   };
+  modules: {
+    courses: boolean;      // Hiển thị Khóa học
+    resources: boolean;    // Hiển thị Tài nguyên/Mẫu thêu
+    blog: boolean;         // Hiển thị Tin tức/Blog
+  };
 }
 
 const defaultSettings: WebsiteSettings = {
   brand: {
-    name: "Tên Thương Hiệu",
-    slogan: "Slogan của bạn ở đây",
-    description: "Mô tả về thương hiệu và sản phẩm của bạn.",
+    name: "Nghệ Nhân Thêu Tay",
+    slogan: "Tinh hoa thêu thùa - Di sản bản địa",
+    description: "Chuyên tranh thêu tay chất lượng cao, khóa học online và mẫu thêu miễn phí cho người yêu nghệ thuật.",
   },
   contact: {
-    phone: "0123456789",
-    email: "email@example.com",
-    zalo: "0123456789",
-    facebook: "https://facebook.com/yourpage",
-    instagram: "",
-    youtube: "",
-    tiktok: "",
+    phone: "0982581222",
+    email: "lienhe@example.com",
+    zalo: "0982581222",
+    facebook: "https://facebook.com/tranhtheutay",
+    instagram: "https://instagram.com/tranhtheutay",
+    youtube: "https://youtube.com/@tranhtheutay",
+    tiktok: "https://tiktok.com/@tranhtheutay",
     twitter: "",
-    address: "Địa chỉ của bạn",
+    address: "Cổ Điện, Hải Bối, Đông Anh, Hà Nội",
   },
   seo: {
     title: "Tên Thương Hiệu - Website bán hàng & khóa học",
@@ -80,6 +85,11 @@ const defaultSettings: WebsiteSettings = {
       accountName: "Tên chủ tài khoản",
       branch: "Chi nhánh",
     },
+  },
+  modules: {
+    courses: true,      // Bật Khóa học
+    resources: true,      // Bật Tài nguyên
+    blog: true,           // Bật Tin tức
   },
 };
 

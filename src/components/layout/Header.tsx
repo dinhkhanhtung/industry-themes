@@ -8,58 +8,49 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useWebsite } from "@/context/WebsiteContext";
 
-// Danh mục sản phẩm
-const navLinks = [
-  { 
-    href: "/san-pham?category=tranh-theu-hoa", 
-    label: "Tranh Thêu Hoa",
-    megaMenu: {
-      image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&q=80",
-      imageTitle: "Bộ Sưu Tập Hoa",
-      columns: [
-        { title: "HOA QUÝ", items: ["Hoa sen", "Hoa lan", "Hoa cúc", "Hoa mẫu đơn", "Hoa cẩm chướng", "Hoa mai"] },
-        { title: "HOA KHÁC", items: ["Hoa hồng", "Hoa tulip", "Hoa lan nghệ", "Hoa anh đào", "Xem tất cả"] },
-        { title: "THEO MÙA", items: ["Xuân", "Hạ", "Thu", "Đông"] },
+// Danh mục sản phẩm - sẽ được lọc dựa trên settings trong component
+const getNavLinks = (settings: any) => {
+  return [
+    { 
+      href: "/san-pham?category=tranh-theu-hoa", 
+      label: "Tranh Thêu Hoa",
+      megaMenu: true,
+      items: [
+        { name: "Hoa Sen", href: "/san-pham?category=hoa-sen" },
+        { name: "Hoa Đào", href: "/san-pham?category=hoa-dao" },
+        { name: "Hoa Mẫu Đơn", href: "/san-pham?category=hoa-mau-don" },
       ]
-    }
-  },
-  { 
-    href: "/san-pham?category=tranh-theu-chim", 
-    label: "Tranh Thêu Chim",
-    megaMenu: {
-      image: "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=400&q=80",
-      imageTitle: "Bộ Sưu Tập Chim",
-      columns: [
-        { title: "CHIM QUÝ", items: ["Chim hạc", "Chim công", "Chim én", "Họa mi", "Chim sơn ca"] },
-        { title: "CHIM PHONG THỦY", items: ["Phượng hoàng", "Chim uyên ương", "Chim sẻ", "Xem tất cả"] },
+    },
+    { 
+      href: "/san-pham?category=tranh-theu-chim", 
+      label: "Tranh Thêu Chim",
+      megaMenu: true,
+      items: [
+        { name: "Chim Hạc", href: "/san-pham?category=chim-hac" },
+        { name: "Chim Sẻ", href: "/san-pham?category=chim-se" },
+        { name: "Tùng Hạc", href: "/san-pham?category=tung-hac" },
       ]
-    }
-  },
-  { 
-    href: "/san-pham?category=phong-thuy", 
-    label: "Phong Thủy",
-    megaMenu: {
-      image: "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?w=400&q=80",
-      imageTitle: "Tranh Phong Thủy",
-      columns: [
-        { title: "LINH VẬT", items: ["Rồng", "Hổ", "Kỳ lân", "Tỳ hưu", "Cá chép"] },
-        { title: "PHONG CẢNH", items: ["Thuận buồm xuôi gió", "Mã đáo thành công", "Tùng hạc diên niên", "Xem tất cả"] },
+    },
+    { 
+      href: "/san-pham?category=tranh-phong-canh", 
+      label: "Phong Cảnh",
+      megaMenu: true,
+      items: [
+        { name: "Sơn Thủy", href: "/san-pham?category=son-thuy" },
+        { name: "Làng Quê", href: "/san-pham?category=lang-que" },
+        { name: "Phố Cổ", href: "/san-pham?category=pho-co" },
       ]
-    }
-  },
-  { 
-    href: "/san-pham?category=tranh-theu-ca", 
-    label: "Tranh Thêu Cá",
-  },
-  { 
-    href: "/san-pham?category=tranh-bieu-tuong", 
-    label: "Biểu Tượng",
-  },
-  { href: "/gioi-thieu", label: "Giới thiệu" },
-  { href: "/khoa-hoc", label: "Khóa học" },
-  { href: "/tai-nguyen", label: "Tài nguyên" },
-  { href: "/bai-viet", label: "Blog" },
-];
+    },
+    { 
+      href: "/san-pham?category=tranh-bieu-tuong", 
+      label: "Biểu Tượng",
+    },
+    { href: "/gioi-thieu", label: "Giới thiệu" },
+    ...(settings.modules?.courses !== false ? [{ href: "/khoa-hoc", label: "Khóa học" }] : []),
+    ...(settings.modules?.resources !== false ? [{ href: "/tai-nguyen", label: "Tài nguyên" }] : []),
+    ...(settings.modules?.blog !== false ? [{ href: "/bai-viet", label: "Blog" }] : []),
+  ];
+};
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -150,7 +141,7 @@ export default function Header() {
 
           {/* Row 2: Desktop Navigation Menu (Below Logo) */}
           <nav className="hidden lg:flex items-center justify-center space-x-8 py-3 border-t border-[#e7e5e4]/50">
-            {navLinks.map((link) => (
+            {getNavLinks(settings).map((link: any) => (
               <div
                 key={link.href}
                 className="relative group"
@@ -292,7 +283,7 @@ export default function Header() {
               
               {/* Sidebar Navigation */}
               <nav className="flex flex-col">
-                {navLinks.map((link) => (
+                {getNavLinks(settings).map((link: any) => (
                   <Link
                     key={link.href}
                     href={link.href}
