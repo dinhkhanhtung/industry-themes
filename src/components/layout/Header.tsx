@@ -103,10 +103,10 @@ export default function Header() {
               </div>
             </Link>
 
-            {/* Right Icons - Mobile: Search + User (Wishlist & Cart in bottom bar) */}
-            <div className="flex items-center space-x-1 lg:space-x-2 ml-auto">
+            {/* Right Icons - Mobile: Search + User (close together, right aligned) */}
+            <div className="flex items-center space-x-0 lg:space-x-2 ml-auto">
               <button 
-                className="p-3 text-[#1c1917] hover:text-[#b45309] transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+                className="p-2 lg:p-3 text-[#1c1917] hover:text-[#b45309] transition-colors min-w-[40px] min-h-[44px] flex items-center justify-center -mr-1"
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
               >
                 <Search size={20} />
@@ -114,7 +114,7 @@ export default function Header() {
               {/* Mobile & Desktop: Account */}
               <Link
                 href="/tai-khoan"
-                className="flex lg:flex p-3 text-[#1c1917] hover:text-[#b45309] transition-colors relative min-w-[44px] min-h-[44px] items-center justify-center"
+                className="p-2 lg:p-3 text-[#1c1917] hover:text-[#b45309] transition-colors relative min-w-[40px] min-h-[44px] flex items-center justify-center"
               >
                 <User size={20} />
               </Link>
