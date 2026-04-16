@@ -47,6 +47,22 @@ export interface WebsiteSettings {
     resources: boolean;    // Hiển thị Tài nguyên/Mẫu thêu
     blog: boolean;         // Hiển thị Tin tức/Blog
   };
+  facebookComments: {
+    enabled: boolean;      // Bật/tắt Facebook comments
+    appId: string;         // Facebook App ID
+    sdkCode: string;       // Facebook SDK code để dán
+  };
+  hero: {
+    showOverlayText: boolean;  // Hiển thị text overlay trên slide
+    slides: {
+      id: string;
+      image: string;
+      title: string;
+      subtitle: string;
+      cta: string;
+      href: string;
+    }[];
+  };
   popup: {
     enabled: boolean;      // Bật/tắt popup
     template: "image" | "text" | "promotion";  // Mẫu popup
@@ -108,6 +124,40 @@ const defaultSettings: WebsiteSettings = {
     courses: true,      // Bật Khóa học
     resources: true,      // Bật Tài nguyên
     blog: true,           // Bật Tin tức
+  },
+  facebookComments: {
+    enabled: false,      // Mặc định tắt Facebook comments
+    appId: "",           // App ID để trống
+    sdkCode: "",         // SDK code để trống
+  },
+  hero: {
+    showOverlayText: true,  // Mặc định hiện text overlay
+    slides: [
+      {
+        id: "1",
+        image: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1600&q=80",
+        title: "Tinh Hoa Thêu Thùa",
+        subtitle: "Di sản nghệ thuật truyền thống",
+        cta: "Khám phá ngay",
+        href: "/san-pham",
+      },
+      {
+        id: "2",
+        image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1600&q=80",
+        title: "Khóa Học Online",
+        subtitle: "Học thêu từ cơ bản đến nâng cao",
+        cta: "Đăng ký học",
+        href: "/khoa-hoc",
+      },
+      {
+        id: "3",
+        image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=1600&q=80",
+        title: "Mẫu Thêu Miễn Phí",
+        subtitle: "Tải về và thực hành ngay",
+        cta: "Tải mẫu",
+        href: "/tai-nguyen",
+      },
+    ],
   },
   popup: {
     enabled: false,      // Mặc định tắt

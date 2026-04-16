@@ -10,7 +10,7 @@ const reviews = [
     name: "Nguyễn Thị Minh",
     location: "Hà Nội",
     rating: 5,
-    text: "My husband bought me my Tranh Hoa Sen embroidery and I love it! The design is so beautiful and the details are so delicate that it instantly elevates my home decor. From traditional to modern style — it just works with everything.",
+    text: "Chồng mua tặng mình bức tranh thêu hoa sen và mình rất thích! Thiết kế đẹp tuyệt vời, chi tiết tinh xảo, treo trong nhà làm nâng tầm không gian ngay. Dù nhà theo phong cách truyền thống hay hiện đại đều hợp cả!",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80",
   },
   {
@@ -18,7 +18,7 @@ const reviews = [
     name: "Trần Văn Hùng",
     location: "TP. Hồ Chí Minh",
     rating: 5,
-    text: "I bought quite a few embroidery artworks from this shop over the years. My wife loves them and displays them often. She says that she loves both the unique designs as well as how well the pieces are crafted.",
+    text: "Mình đã mua rất nhiều tranh thêu từ shop qua các năm. Vợ mình rất thích và thường xuyên trưng bày. Cô ấy nói thích cả thiết kế độc đáo lẫn chất lượng thêu tinh xảo của từng bức tranh.",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80",
   },
   {
@@ -26,7 +26,7 @@ const reviews = [
     name: "Lê Thị Hương",
     location: "Đà Nẵng",
     rating: 5,
-    text: "I got my embroidery frame from the Premium Collection. So happy with it! Looks stylish, is designed for the everyday practicality of a busy artist, and the wood is luxuriously soft to the touch!",
+    text: "Mình mua khung tranh thêu từ bộ sưu tập cao cấp. Rất hài lòng! Nhìn sang trọng, thiết kế tiện lợi cho người làm nghề bận rộn, gỗ mịn và êm tay tuyệt vời!",
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80",
   },
 ];

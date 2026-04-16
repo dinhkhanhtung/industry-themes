@@ -13,7 +13,7 @@ import { useWebsite } from "@/context/WebsiteContext";
 
 export default function WebsiteSettingsPage() {
   const { settings, updateSettings } = useWebsite();
-  const [activeTab, setActiveTab] = useState<"general" | "contact" | "seo" | "appearance" | "payment" | "shipping" | "modules" | "popup">("general");
+  const [activeTab, setActiveTab] = useState<"general" | "contact" | "seo" | "appearance" | "payment" | "shipping" | "modules" | "popup" | "facebook" | "hero">("general");
   const [tempSettings, setTempSettings] = useState(settings);
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
@@ -65,9 +65,11 @@ export default function WebsiteSettingsPage() {
                 { id: "contact", label: "Liên hệ", icon: Phone },
                 { id: "seo", label: "Cấu hình SEO", icon: SearchIcon },
                 { id: "appearance", label: "Giao diện", icon: Palette },
+                { id: "hero", label: "Slide Banner", icon: Layout },
                 { id: "payment", label: "Thanh toán", icon: CreditCard },
                 { id: "shipping", label: "Vận chuyển", icon: Truck },
                 { id: "modules", label: "Tính năng", icon: Layers },
+                { id: "facebook", label: "Facebook Comments", icon: Facebook },
                 { id: "popup", label: "Popup quảng cáo", icon: Gift },
               ].map((tab) => (
                 <button
@@ -764,6 +766,242 @@ export default function WebsiteSettingsPage() {
                       />
                       <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#b45309]"></div>
                     </label>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Facebook Comments Settings */}
+            {activeTab === "facebook" && (
+              <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="flex items-center gap-4 pb-6 border-b border-[#e7e5e4]">
+                  <div className="w-12 h-12 bg-[#1877F2]/10 rounded-2xl flex items-center justify-center text-[#1877F2]">
+                    <Facebook size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-[#1c1917] text-lg tracking-tight">Facebook Comments</h3>
+                    <p className="text-sm text-[#57534e] font-medium">Tích hợp bình luận Facebook vào website</p>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  {/* Enable/Disable */}
+                  <div className="flex items-center justify-between p-4 bg-[#fffbf5] rounded-xl border border-[#e7e5e4]">
+                    <div>
+                      <h4 className="font-medium text-[#1c1917]">Bật Facebook Comments</h4>
+                      <p className="text-sm text-[#57534e]">Hiển thị bình luận Facebook trên các trang sản phẩm và bài viết</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={tempSettings.facebookComments?.enabled ?? false}
+                        onChange={(e) => setTempSettings({
+                          ...tempSettings,
+                          facebookComments: { ...tempSettings.facebookComments, enabled: e.target.checked }
+                        })}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1877F2]"></div>
+                    </label>
+                  </div>
+
+                  {/* App ID */}
+                  <div className="space-y-3">
+                    <label className="block text-sm font-bold text-[#1c1917] uppercase tracking-wider">Facebook App ID</label>
+                    <input
+                      type="text"
+                      value={tempSettings.facebookComments?.appId || ""}
+                      onChange={(e) => setTempSettings({
+                        ...tempSettings,
+                        facebookComments: { ...tempSettings.facebookComments, appId: e.target.value }
+                      })}
+                      placeholder="123456789012345"
+                      className="w-full px-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#1877F2] focus:outline-none"
+                    />
+                    <p className="text-xs text-[#57534e]">Lấy App ID từ Facebook Developers Console</p>
+                  </div>
+
+                  {/* SDK Code */}
+                  <div className="space-y-3">
+                    <label className="block text-sm font-bold text-[#1c1917] uppercase tracking-wider">Mã SDK Facebook</label>
+                    <textarea
+                      rows={6}
+                      value={tempSettings.facebookComments?.sdkCode || ""}
+                      onChange={(e) => setTempSettings({
+                        ...tempSettings,
+                        facebookComments: { ...tempSettings.facebookComments, sdkCode: e.target.value }
+                      })}
+                      placeholder="<!-- Dán mã SDK Facebook của bạn vào đây -->"
+                      className="w-full px-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#1877F2] focus:outline-none resize-none font-mono text-sm"
+                    />
+                    <p className="text-xs text-[#57534e]">Dán đoạn mã SDK từ Facebook Developers vào đây. Hệ thống sẽ tự động chèn vào website.</p>
+                  </div>
+
+                  {/* Instructions */}
+                  <div className="p-4 bg-blue-50 rounded-xl border border-blue-200">
+                    <h4 className="font-medium text-blue-900 mb-2">Hướng dẫn lấy mã SDK:</h4>
+                    <ol className="text-sm text-blue-800 space-y-1 list-decimal list-inside">
+                      <li>Vào <a href="https://developers.facebook.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">Facebook Developers</a></li>
+                      <li>Tạo ứng dụng mới hoặc chọn ứng dụng có sẵn</li>
+                      <li>Vào Settings → Basic để lấy App ID</li>
+                      <li>Vào Products → Facebook Comments → Setup</li>
+                      <li>Copy đoạn mã SDK và dán vào ô bên trên</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Hero Banner Settings */}
+            {activeTab === "hero" && (
+              <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="flex items-center gap-4 pb-6 border-b border-[#e7e5e4]">
+                  <div className="w-12 h-12 bg-[var(--color-primary)]/10 rounded-2xl flex items-center justify-center text-[var(--color-primary)]">
+                    <Layout size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-[#1c1917] text-lg tracking-tight">Slide Banner</h3>
+                    <p className="text-sm text-[#57534e] font-medium">Quản lý slide banner trang chủ</p>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  {/* Show Overlay Text Toggle */}
+                  <div className="flex items-center justify-between p-4 bg-[#fffbf5] rounded-xl border border-[#e7e5e4]">
+                    <div>
+                      <h4 className="font-medium text-[#1c1917]">Hiển thị text trên slide</h4>
+                      <p className="text-sm text-[#57534e]">Tắt nếu banner đã thiết kế sẵn có chữ, bật nếu cần thêm text overlay</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={tempSettings.hero?.showOverlayText ?? true}
+                        onChange={(e) => setTempSettings({
+                          ...tempSettings,
+                          hero: { ...tempSettings.hero, showOverlayText: e.target.checked }
+                        })}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[var(--color-primary)]"></div>
+                    </label>
+                  </div>
+
+                  {/* Slides Management */}
+                  <div className="space-y-4">
+                    <h4 className="font-medium text-[#1c1917]">Quản lý slides</h4>
+                    {(tempSettings.hero?.slides || []).map((slide, index) => (
+                      <div key={slide.id} className="p-4 border border-[#e7e5e4] rounded-xl space-y-4">
+                        <div className="flex items-center justify-between">
+                          <h5 className="font-medium text-[#1c1917]">Slide {index + 1}</h5>
+                          <button
+                            onClick={() => {
+                              const newSlides = tempSettings.hero?.slides.filter(s => s.id !== slide.id) || [];
+                              setTempSettings({
+                                ...tempSettings,
+                                hero: { ...tempSettings.hero, slides: newSlides }
+                              });
+                            }}
+                            className="text-red-500 hover:text-red-700 text-sm"
+                          >
+                            Xóa
+                          </button>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          <input
+                            type="text"
+                            value={slide.image}
+                            onChange={(e) => {
+                              const newSlides = [...(tempSettings.hero?.slides || [])];
+                              newSlides[index].image = e.target.value;
+                              setTempSettings({
+                                ...tempSettings,
+                                hero: { ...tempSettings.hero, slides: newSlides }
+                              });
+                            }}
+                            placeholder="URL ảnh"
+                            className="px-4 py-2 border border-[#e7e5e4] rounded-lg text-sm"
+                          />
+                          <input
+                            type="text"
+                            value={slide.title}
+                            onChange={(e) => {
+                              const newSlides = [...(tempSettings.hero?.slides || [])];
+                              newSlides[index].title = e.target.value;
+                              setTempSettings({
+                                ...tempSettings,
+                                hero: { ...tempSettings.hero, slides: newSlides }
+                              });
+                            }}
+                            placeholder="Tiêu đề"
+                            className="px-4 py-2 border border-[#e7e5e4] rounded-lg text-sm"
+                          />
+                          <input
+                            type="text"
+                            value={slide.subtitle}
+                            onChange={(e) => {
+                              const newSlides = [...(tempSettings.hero?.slides || [])];
+                              newSlides[index].subtitle = e.target.value;
+                              setTempSettings({
+                                ...tempSettings,
+                                hero: { ...tempSettings.hero, slides: newSlides }
+                              });
+                            }}
+                            placeholder="Mô tả"
+                            className="px-4 py-2 border border-[#e7e5e4] rounded-lg text-sm"
+                          />
+                          <input
+                            type="text"
+                            value={slide.cta}
+                            onChange={(e) => {
+                              const newSlides = [...(tempSettings.hero?.slides || [])];
+                              newSlides[index].cta = e.target.value;
+                              setTempSettings({
+                                ...tempSettings,
+                                hero: { ...tempSettings.hero, slides: newSlides }
+                              });
+                            }}
+                            placeholder="Nút CTA"
+                            className="px-4 py-2 border border-[#e7e5e4] rounded-lg text-sm"
+                          />
+                        </div>
+                        <input
+                          type="text"
+                          value={slide.href}
+                          onChange={(e) => {
+                            const newSlides = [...(tempSettings.hero?.slides || [])];
+                            newSlides[index].href = e.target.value;
+                            setTempSettings({
+                              ...tempSettings,
+                              hero: { ...tempSettings.hero, slides: newSlides }
+                            });
+                          }}
+                          placeholder="Link đích"
+                          className="w-full px-4 py-2 border border-[#e7e5e4] rounded-lg text-sm"
+                        />
+                      </div>
+                    ))}
+                    <button
+                      onClick={() => {
+                        const newSlide = {
+                          id: Date.now().toString(),
+                          image: "",
+                          title: "Tiêu đề mới",
+                          subtitle: "Mô tả",
+                          cta: "Xem thêm",
+                          href: "/"
+                        };
+                        setTempSettings({
+                          ...tempSettings,
+                          hero: { 
+                            ...tempSettings.hero, 
+                            slides: [...(tempSettings.hero?.slides || []), newSlide] 
+                          }
+                        });
+                      }}
+                      className="w-full py-3 border-2 border-dashed border-[#e7e5e4] rounded-xl text-[#57534e] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors"
+                    >
+                      + Thêm slide mới
+                    </button>
                   </div>
                 </div>
               </div>
