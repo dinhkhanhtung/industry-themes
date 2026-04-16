@@ -43,7 +43,7 @@ export default function Features() {
               <h3 className="text-base font-medium tracking-wide text-[var(--color-dark)] uppercase mb-3">
                 {feature.title}
               </h3>
-              <p className="text-sm leading-relaxed text-[#57534e] max-w-xs">
+              <p className="text-sm leading-relaxed text-[var(--color-muted)] max-w-xs">
                 {feature.description}
               </p>
             </motion.div>

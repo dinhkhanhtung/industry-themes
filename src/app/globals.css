@@ -48,16 +48,52 @@
     @apply bg-background text-foreground;
     font-family: var(--font-noto-sans), sans-serif;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Focus visible for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  /* Remove outline for mouse users, keep for keyboard */
+  :focus:not(:focus-visible) {
+    outline: none;
   }
   
   h1, h2, h3, h4, h5, h6, .font-serif {
     font-family: var(--font-be-vietnam), serif;
+  }
+
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
 @layer utilities {
   .glass {
     @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-sm;
+  }
+
+  /* Active state for mobile touch feedback */
+  .press-feedback {
+    @apply active:scale-95 active:opacity-90 transition-transform duration-100;
+  }
+
+  /* Minimum touch target size (44x44px) */
+  .min-touch-target {
+    @apply min-w-[44px] min-h-[44px];
   }
 
   .transition-standard {
@@ -76,6 +112,6 @@
 
   /* Smooth hover for links */
   .hover-smooth {
-    @apply hover:text-[#b45309] transition-colors duration-200 ease-out;
+    @apply hover:text-[var(--color-primary)] transition-colors duration-200 ease-out;
   }
 }

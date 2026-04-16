@@ -44,7 +44,7 @@ export default function BlogSection() {
           <h2 className="text-2xl md:text-3xl font-serif text-[var(--color-dark)] mb-3">
             Bài Viết Mới Nhất
           </h2>
-          <p className="text-sm text-[#57534e] max-w-md mx-auto">
+          <p className="text-sm text-[var(--color-muted)] max-w-md mx-auto">
             Khám phá câu chuyện, tin tức và kiến thức về nghệ thuật thêu tay
           </p>
         </motion.div>
@@ -64,19 +64,20 @@ export default function BlogSection() {
                     src={post.image}
                     alt={post.title}
                     fill
+                    loading="lazy"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-xs">
                     <span className="text-[var(--color-primary)] font-medium">{post.category}</span>
-                    <span className="text-[#57534e]">•</span>
-                    <span className="text-[#57534e]">{post.date}</span>
+                    <span className="text-[var(--color-muted)]">•</span>
+                    <span className="text-[var(--color-muted)]">{post.date}</span>
                   </div>
                   <h3 className="text-lg font-medium text-[var(--color-dark)] group-hover:text-[var(--color-primary)] transition-colors line-clamp-2">
                     {post.title}
                   </h3>
-                  <p className="text-sm text-[#57534e] line-clamp-2">
+                  <p className="text-sm text-[var(--color-muted)] line-clamp-2">
                     {post.excerpt}
                   </p>
                 </div>

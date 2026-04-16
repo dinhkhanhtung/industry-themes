@@ -135,6 +135,7 @@ export default function Header() {
             <button
               className="lg:hidden p-3 -ml-2 text-[var(--color-dark)] hover:text-[var(--color-primary)] transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Mở menu"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -149,7 +150,7 @@ export default function Header() {
                     <div className="text-sm sm:text-lg lg:text-2xl font-bold text-[var(--color-dark)] tracking-wider uppercase leading-tight whitespace-nowrap">
                       {settings.brand.name}
                     </div>
-                    <div className="text-[7px] sm:text-[8px] lg:text-xs tracking-[0.1em] sm:tracking-[0.15em] lg:tracking-[0.4em] text-[#57534e] uppercase font-medium mt-0.5 whitespace-nowrap">
+                    <div className="text-[7px] sm:text-[8px] lg:text-xs tracking-[0.1em] sm:tracking-[0.15em] lg:tracking-[0.4em] text-[var(--color-muted)] uppercase font-medium mt-0.5 whitespace-nowrap">
                       {settings.brand.slogan}
                     </div>
                   </div>
@@ -162,6 +163,7 @@ export default function Header() {
               <button 
                 className="p-2 lg:p-3 text-[var(--color-dark)] hover:text-[var(--color-primary)] transition-colors min-w-[40px] min-h-[44px] flex items-center justify-center -mr-1"
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
+                aria-label="Tìm kiếm"
               >
                 <Search size={20} />
               </button>
@@ -255,7 +257,7 @@ export default function Header() {
                                     <li key={item}>
                                       <Link 
                                         href={`${link.href}?filter=${encodeURIComponent(item)}`} 
-                                        className="text-[13px] text-[#57534e] hover:text-[var(--color-primary)] hover:translate-x-1 transition-all block"
+                                        className="text-[13px] text-[var(--color-muted)] hover:text-[var(--color-primary)] hover:translate-x-1 transition-all block"
                                       >
                                         {item}
                                       </Link>
@@ -290,10 +292,10 @@ export default function Header() {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Tìm kiếm sản phẩm..."
-                      className="w-full px-4 py-3 border border-[#e7e5e4] focus:border-[var(--color-primary)] focus:outline-none rounded-lg text-[var(--color-dark)] placeholder:text-[#57534e]"
+                      className="w-full px-4 py-3 border border-[#e7e5e4] focus:border-[var(--color-primary)] focus:outline-none rounded-lg text-[var(--color-dark)] placeholder:text-[var(--color-muted)]"
                       autoFocus
                     />
-                    <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-primary)]">
+                    <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-primary)]" aria-label="Tìm kiếm">
                       <Search size={20} />
                     </button>
                   </form>
@@ -330,6 +332,7 @@ export default function Header() {
                 <button
                   onClick={() => setIsMenuOpen(false)}
                   className="p-2 hover:text-[var(--color-primary)] transition-colors"
+                  aria-label="Đóng menu"
                 >
                   <X size={24} />
                 </button>
@@ -352,7 +355,7 @@ export default function Header() {
 
               {/* Sidebar Footer */}
               <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[#e7e5e4] bg-[#fffbf5]">
-                <p className="text-xs text-[#57534e] mb-2">Liên hệ hỗ trợ</p>
+                <p className="text-xs text-[var(--color-muted)] mb-2">Liên hệ hỗ trợ</p>
                 <p className="text-sm font-medium text-[var(--color-dark)]">0982 581 222</p>
               </div>
             </motion.div>

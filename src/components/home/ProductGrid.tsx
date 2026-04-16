@@ -231,7 +231,7 @@ function ProductCard({ product, onQuickView }: ProductCardProps) {
               />
             ))}
           </div>
-          <span className="text-xs text-[#57534e]">({product.reviews})</span>
+          <span className="text-xs text-[var(--color-muted)]">({product.reviews})</span>
         </div>
         
         <h3 className="text-[15px] text-[var(--color-dark)] mb-2 line-clamp-2 min-h-[44px] font-medium hover:text-[var(--color-primary)] transition-colors duration-300">
@@ -273,13 +273,15 @@ export default function ProductGrid() {
         >
           <p className="text-sm tracking-[0.2em] text-[var(--color-primary)] uppercase mb-3 font-medium">Sản Phẩm Của Chúng Tôi</p>
           <h2 className="text-3xl md:text-4xl font-serif text-[var(--color-dark)] mb-4">Bộ Sưu Tập Thêu Tay</h2>
-          <p className="text-[#57534e] max-w-lg mx-auto">Khám phá những tác phẩm thêu tay tinh xảo, mang đậm giá trị văn hóa Việt Nam</p>
+          <p className="text-[var(--color-muted)] max-w-lg mx-auto">Khám phá những tác phẩm thêu tay tinh xảo, mang đậm giá trị văn hóa Việt Nam</p>
         </motion.div>
 
         {/* Tabs */}
         <div className="flex justify-center gap-12 mb-12">
           <button
             onClick={() => setActiveTab("new")}
+            role="tab"
+            aria-selected={activeTab === "new"}
             className={`text-lg pb-3 transition-all duration-300 relative font-medium ${
               activeTab === "new"
                 ? "text-[var(--color-dark)]"
@@ -293,6 +295,8 @@ export default function ProductGrid() {
           </button>
           <button
             onClick={() => setActiveTab("bestsellers")}
+            role="tab"
+            aria-selected={activeTab === "bestsellers"}
             className={`text-lg pb-3 transition-all duration-300 relative font-medium ${
               activeTab === "bestsellers"
                 ? "text-[var(--color-dark)]"

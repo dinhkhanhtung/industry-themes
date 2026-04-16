@@ -1,0 +1,159 @@
+# 📊 BÁO CÁO KIỂM TRA UI - Dự án Nghệ Nhân
+
+## Tổng quan phát hiện
+
+### 🔴 Nghiêm trọng (Cần sửa ngay)
+
+| # | Vấn đề | Vị trí | Mức độ |
+|---|--------|--------|--------|
+| 1 | **Màu sắc không nhất quán** | 82+ files | Cao |
+| 2 | **Thiếu CSS variables** | Hardcode #b45309 ở nhiều nơi | Cao |
+| 3 | **Hardcode hover color** | globals.css:79 | Cao |
+
+### 🟡 Cảnh báo (Cần cải thiện)
+
+| # | Vấn đề | Tiêu chí Web Interface Guidelines |
+|---|--------|-----------------------------------|
+| 4 | **Accessibility** - Cần kiểm tra aria-label cho icon buttons |
+| 5 | **Focus states** - Có thể thiếu focus-visible:ring |
+| 6 | **Touch targets** - Kiểm tra đủ 44px cho mobile |
+| 7 | **Image optimization** - Thiếu width/height explicit |
+| 8 | **prefers-reduced-motion** - Chưa honor |
+
+### 🟢 Tốt (Đã làm đúng)
+
+| Tiêu chí | Trạng thái |
+|----------|------------|
+| ✅ Responsive breakpoints | Có sm:, md:, lg: |
+| ✅ Tailwind CSS | Đang dùng |
+| ✅ Framer Motion | Có animation |
+| ✅ shadcn/ui | Có component library |
+
+---
+
+## 🎯 KẾ HOẠCH CẢI THIỆN (5 Pha)
+
+### **PHA 1: Design System & Màu sắc** (2-3 giờ)
+**Mục tiêu:** Nhất quán màu sắc toàn dự án
+
+```
+Việc cần làm:
+1. Thay thế tất cả mã màu cứng thành CSS variables
+2. Kiểm tra từng file trong src/components
+3. Cập nhật globals.css đầy đủ
+4. Test lại trên cả light/dark mode
+
+Files ưu tiên:
+- globals.css (base styles)
+- Header.tsx (navigation)
+- Footer.tsx (footer)
+- All page.tsx files
+```
+
+### **PHA 2: Accessibility** (2 giờ)
+**Mục tiêu:** Tuân thủ WCAG 2.1
+
+```
+Việc cần làm:
+1. Thêm aria-label cho mọi icon-only button
+2. Thêm focus-visible:ring-* cho interactive elements
+3. Đảm bảo heading hierarchy (h1→h6)
+4. Thêm alt text cho images
+5. Kiểm tra color contrast (4.5:1)
+```
+
+### **PHA 3: Mobile & Touch** (2 giờ)
+**Mục tiêu:** Thân thiện di động hoàn hảo
+
+```
+Việc cần làm:
+1. Kiểm tra touch targets đủ 44px
+2. Test trên thiết bị thật (iPhone, Android)
+3. Kiểm tra font-size đọc được (16px+ cho input)
+4. Thêm touch-action: manipulation
+5. Kiểm tra safe areas (notch, dynamic island)
+```
+
+### **PHA 4: Performance & Animation** (1.5 giờ)
+**Mục tiêu:** Mượt mà 60fps
+
+```
+Việc cần làm:
+1. Thêm prefers-reduced-motion support
+2. Chỉ animate transform/opacity
+3. Loại bỏ transition: all
+4. Thêm will-change cho animation phức tạp
+5. Lazy load images below-fold
+```
+
+### **PHA 5: Polish & Final Check** (1 giờ)
+**Mục tiêu:** Sang trọng, chuyên nghiệp
+
+```
+Việc cần làm:
+1. Kiểm tra typography (ellipsis, curly quotes)
+2. Thêm loading states với "…"
+3. Kiểm tra empty states
+4. Thêm tabular-nums cho số
+5. Kiểm tra text-wrap: balance trên headings
+```
+
+---
+
+## 📋 CHECKLIST CHI TIẾT
+
+### Design System
+- [ ] Định nghĩa palette màu trong variables
+- [ ] Đồng nhất spacing (4px grid: 4, 8, 12, 16, 24, 32, 48, 64)
+- [ ] Đồng nhất border-radius (4, 8, 12, 16, 24, full)
+- [ ] Đồng nhất shadow (sm, md, lg, xl)
+- [ ] Đồng nhất transitions (150ms, 200ms, 300ms)
+
+### Typography
+- [ ] Font hierarchy rõ ràng
+- [ ] Line-height đủ thoáng (1.5-1.6)
+- [ ] Letter-spacing hợp lý
+- [ ] Contrast đủ cao
+
+### Responsive
+- [ ] Mobile-first approach
+- [ ] Breakpoints: sm(640), md(768), lg(1024), xl(1280)
+- [ ] Test trên: iPhone SE, iPhone 14 Pro, iPad, Desktop
+
+### Interaction
+- [ ] Hover states trên desktop
+- [ ] Active states trên mobile
+- [ ] Focus states cho keyboard
+- [ ] Loading states rõ ràng
+- [ ] Error states dễ hiểu
+
+---
+
+## 🚀 Ưu tiên thực hiện
+
+**Tuần 1:**
+- Pha 1: Design System (quan trọng nhất)
+- Pha 2: Accessibility (bắt buộc)
+
+**Tuần 2:**
+- Pha 3: Mobile optimization
+- Pha 4: Performance
+
+**Tuần 3:**
+- Pha 5: Polish
+- Testing & QA
+
+---
+
+## 💡 Gợi ý thêm
+
+1. **Dùng Storybook** để quản lý components
+2. **Thêm Chromatic** cho visual regression testing
+3. **Dùngaxe DevTools** kiểm tra accessibility
+4. **Google Lighthouse** đo performance
+5. **BrowserStack** test cross-browser
+
+---
+
+*Report tạo: 16/04/2025*
+*Tổng thời gian ước tính: 8.5 giờ*

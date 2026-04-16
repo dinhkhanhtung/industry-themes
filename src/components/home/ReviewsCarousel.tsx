@@ -91,14 +91,14 @@ export default function ReviewsCarousel() {
 
         {/* Navigation Dots */}
         <div className="mt-8 flex items-center justify-center gap-2">
-          <button className="p-2 text-[#57534e] hover:text-[var(--color-primary)] transition-colors">
+          <button className="p-2 text-[var(--color-muted)] hover:text-[var(--color-primary)] transition-colors">
             <ChevronLeft className="h-5 w-5" />
           </button>
           <div className="flex gap-2">
             <button className="w-2 h-2 rounded-full bg-[var(--color-dark)]" />
             <button className="w-2 h-2 rounded-full bg-[#e7e5e4] hover:bg-[var(--color-primary)]/50" />
           </div>
-          <button className="p-2 text-[#57534e] hover:text-[var(--color-primary)] transition-colors">
+          <button className="p-2 text-[var(--color-muted)] hover:text-[var(--color-primary)] transition-colors">
             <ChevronRight className="h-5 w-5" />
           </button>
         </div>

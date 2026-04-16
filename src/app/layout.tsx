@@ -75,11 +75,19 @@ export default function RootLayout({
   return (
     <html lang="vi" suppressHydrationWarning>
       <body className={`${beVietnamPro.variable} ${notoSans.variable} font-sans antialiased`} suppressHydrationWarning>
-        <Providers>
-          <ClientLayout>
-            {children}
-          </ClientLayout>
-        </Providers>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-[var(--color-primary)] focus:text-white focus:px-6 focus:py-3 focus:top-4 focus:left-4 focus:rounded-sm focus:outline-none"
+        >
+          Skip to main content
+        </a>
+        <main id="main-content" className="flex-1">
+          <Providers>
+            <ClientLayout>
+              {children}
+            </ClientLayout>
+          </Providers>
+        </main>
       </body>
     </html>
   );

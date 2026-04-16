@@ -51,7 +51,7 @@ export default function LoginPage() {
             <h1 className="text-2xl font-serif text-[var(--color-dark)] mb-2">
               Đăng nhập
             </h1>
-            <p className="text-sm text-[#57534e]">
+            <p className="text-sm text-[var(--color-muted)]">
               Chào mừng bạn quay trở lại
             </p>
           </div>
@@ -83,7 +83,7 @@ export default function LoginPage() {
               <div className="w-full border-t border-[#e7e5e4]"></div>
             </div>
             <div className="relative flex justify-center">
-              <span className="bg-white px-4 text-xs text-[#57534e]">
+              <span className="bg-white px-4 text-xs text-[var(--color-muted)]">
                 Hoặc đăng nhập với email
               </span>
             </div>
@@ -98,7 +98,7 @@ export default function LoginPage() {
               <div className="relative">
                 <Mail
                   size={18}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-[#57534e]"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-muted)]"
                 />
                 <input
                   type="email"
@@ -118,7 +118,7 @@ export default function LoginPage() {
               <div className="relative">
                 <Lock
                   size={18}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-[#57534e]"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-muted)]"
                 />
                 <input
                   type={showPassword ? "text" : "password"}
@@ -131,7 +131,7 @@ export default function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#57534e] hover:text-[var(--color-dark)]"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-muted)] hover:text-[var(--color-dark)]"
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -144,7 +144,7 @@ export default function LoginPage() {
                   type="checkbox"
                   className="w-4 h-4 rounded border-[#e7e5e4] text-[var(--color-primary)] focus:ring-[var(--color-primary)]"
                 />
-                <span className="text-[#57534e]">Ghi nhớ đăng nhập</span>
+                <span className="text-[var(--color-muted)]">Ghi nhớ đăng nhập</span>
               </label>
               <Link
                 href="/quen-mat-khau"
@@ -163,7 +163,7 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <p className="mt-6 text-center text-sm text-[#57534e]">
+          <p className="mt-6 text-center text-sm text-[var(--color-muted)]">
             Chưa có tài khoản?{" "}
             <Link href="/dang-ky" className="text-[var(--color-primary)] hover:underline font-medium">
               Đăng ký ngay

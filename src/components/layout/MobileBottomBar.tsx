@@ -55,7 +55,7 @@ export default function MobileBottomBar() {
                   <Icon 
                     size={22} 
                     strokeWidth={isActive ? 2.5 : 2}
-                    className={`transition-all duration-300 ${isActive ? "text-[var(--color-primary)] scale-110" : "text-[#57534e]"}`}
+                    className={`transition-all duration-300 ${isActive ? "text-[var(--color-primary)] scale-110" : "text-[var(--color-muted)]"}`}
                   />
                   {/* Cart Badge */}
                   {item.badge && cartCount > 0 && (
@@ -64,7 +64,7 @@ export default function MobileBottomBar() {
                     </span>
                   )}
                 </div>
-                <span className={`text-[10px] mt-0.5 font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-[var(--color-primary)]" : "text-[#57534e]"}`}>
+                <span className={`text-[10px] mt-0.5 font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-[var(--color-primary)]" : "text-[var(--color-muted)]"}`}>
                   {item.label}
                 </span>
                 

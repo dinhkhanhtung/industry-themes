@@ -49,7 +49,7 @@ export default function FeaturedCategories() {
           <h2 className="text-3xl md:text-4xl font-serif text-[var(--color-dark)] mb-4">
             Danh Mục Nổi Bật
           </h2>
-          <p className="text-[#57534e] max-w-md mx-auto">
+          <p className="text-[var(--color-muted)] max-w-md mx-auto">
             Các bộ sưu tập tranh thêu được yêu thích nhất
           </p>
         </motion.div>

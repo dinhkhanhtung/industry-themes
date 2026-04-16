@@ -65,6 +65,7 @@ export default function OurValues() {
                   src={value.image}
                   alt={value.title}
                   fill
+                  loading="lazy"
                   className="object-cover"
                 />
               </div>
@@ -77,7 +78,7 @@ export default function OurValues() {
                 <h3 className="text-2xl md:text-3xl font-serif text-[var(--color-dark)] mb-4">
                   {value.title}
                 </h3>
-                <p className="text-[#57534e] leading-relaxed max-w-md mx-auto lg:mx-0">
+                <p className="text-[var(--color-muted)] leading-relaxed max-w-md mx-auto lg:mx-0">
                   {value.description}
                 </p>
               </div>

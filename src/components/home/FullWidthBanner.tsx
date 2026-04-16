@@ -20,7 +20,7 @@ export default function FullWidthBanner() {
               <br />
               Thành Viên & Nhận Quà!
             </h2>
-            <p className="text-[#57534e] mb-6 leading-relaxed">
+            <p className="text-[var(--color-muted)] mb-6 leading-relaxed">
               Tận hưởng ưu đãi giảm 10% cho đơn hàng tiếp theo, miễn phí vận chuyển*, 
               tích điểm cho mỗi giao dịch và nhiều đặc quyền hấp dẫn khác!
             </p>
@@ -68,7 +68,7 @@ export default function FullWidthBanner() {
                 Tạo Tài Khoản Miễn Phí
               </button>
             </div>
-            <p className="text-sm text-[#57534e] text-center mt-4">
+            <p className="text-sm text-[var(--color-muted)] text-center mt-4">
               Đã có tài khoản?{" "}
               <Link href="/tai-khoan/dang-nhap" className="text-[var(--color-primary)] hover:underline">
                 Đăng nhập tại đây
