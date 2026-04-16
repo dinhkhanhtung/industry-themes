@@ -54,7 +54,7 @@ export interface WebsiteSettings {
   };
   modules: {
     courses: boolean;      // Hiển thị Khóa học
-    resources: boolean;    // Hiển thị Tài nguyên/Mẫu thêu
+    resources: boolean;    // Hiển thị Tài nguyên
     blog: boolean;         // Hiển thị Tin tức/Blog
   };
   popup: {
@@ -72,7 +72,7 @@ export interface WebsiteSettings {
 
 const defaultSettings: WebsiteSettings = {
   // Theme defaults
-  industry: "tranh-theu",           // Mặc định: tranh thêu
+  industry: "thoi-trang",           // Mặc định: thời trang (generic)
   layoutStyle: "rounded",           // Mặc định: bo góc
   
   brand: {

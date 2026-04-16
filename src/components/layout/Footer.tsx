@@ -7,11 +7,11 @@ import { useWebsite } from "@/context/WebsiteContext";
 
 const footerLinks = {
   shop: [
-    { name: "Tranh Thêu Tay", href: "/san-pham" },
-    { name: "Phụ Kiện Thêu", href: "/phu-kien" },
+    { name: "Sản Phẩm", href: "/san-pham" },
+    { name: "Phụ Kiện", href: "/phu-kien" },
     { name: "Khóa Học Online", href: "/khoa-hoc" },
-    { name: "Mẫu Thêu Miễn Phí", href: "/tai-nguyen" },
-    { name: "Khung Tranh", href: "/phu-kien" },
+    { name: "Tài Nguyên Miễn Phí", href: "/tai-nguyen" },
+    { name: "Bộ Sưu Tập", href: "/phu-kien" },
   ],
   support: [
     { name: "Hướng Dẫn Mua Hàng", href: "#" },

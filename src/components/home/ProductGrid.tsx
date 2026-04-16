@@ -13,51 +13,50 @@ type TabType = "new" | "bestsellers";
 const newArrivals = [
   {
     id: "1",
-    name: "Túi thêu tay hoa sen - Thủ công cao cấp",
+    name: "Sản phẩm thủ công cao cấp - Thiết kế độc bản",
     price: 2800000,
     image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80",
     hoverImage: "https://images.unsplash.com/photo-1549298916-f52e28b5f7b9?w=600&q=80",
-    badge: "Mới",
-    rating: 5,
     reviews: 12,
-    colors: ["#b45309", "#1c1917", "#78716c"],
+    rating: 4.8,
+    category: "Thủ công"
   },
   {
     id: "2",
-    name: "Túi xách thêu chim hạc - Phong cách Trung Hoa",
+    name: "Phụ kiện thời trang - Phong cách sang trọng",
     price: 3500000,
     image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=600&q=80",
     hoverImage: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&q=80",
-    rating: 5,
     reviews: 8,
-    colors: ["#1c1917", "#78716c"],
+    rating: 4.9,
+    category: "Thời trang"
   },
   {
     id: "3",
-    name: "Cặp tóc thêu hoa mẫu đơn - Truyền thống",
+    name: "Phụ kiện trang trí - Phong cách cổ điển",
     price: 850000,
     image: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&q=80",
     hoverImage: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=600&q=80",
-    rating: 4,
-    reviews: 15,
-    colors: ["#b45309", "#dc2626"],
+    reviews: 24,
+    rating: 4.7,
+    category: "Phụ kiện"
   },
   {
     id: "4",
-    name: "Ví cầm tay thêu hoa lan - Tinh xảo",
+    name: "Ví cầm tay cao cấp - Thiết kế tinh xảo",
     price: 1200000,
     image: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=600&q=80",
     hoverImage: "https://images.unsplash.com/photo-1549298916-f52e28b5f7b9?w=600&q=80",
-    rating: 5,
-    reviews: 6,
-    colors: ["#1c1917", "#b45309"],
+    reviews: 15,
+    rating: 4.8,
+    category: "Ví"
   },
 ];
 
 const bestSellers = [
   {
     id: "5",
-    name: "Túi đeo chéo thêu rồng phượng - Cổ điển",
+    name: "Túi đeo chéo thủ công - Phong cách cổ điển",
     price: 3200000,
     image: "https://images.unsplash.com/photo-1549298916-f52e28b5f7b9?w=600&q=80",
     hoverImage: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=600&q=80",
@@ -68,7 +67,7 @@ const bestSellers = [
   },
   {
     id: "6",
-    name: "Cặp tóc thêu hoa cúc - Nhật Bản",
+    name: "Phụ kiện tóc trang trí - Phong cách Nhật Bản",
     price: 650000,
     image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=600&q=80",
     hoverImage: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&q=80",
@@ -78,7 +77,7 @@ const bestSellers = [
   },
   {
     id: "7",
-    name: "Túi clutch thêu hoa đào - Xuân sang",
+    name: "Ví cầm tay đính đá - Sang trọng",
     price: 2800000,
     image: "https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=600&q=80",
     hoverImage: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&q=80",
@@ -88,7 +87,7 @@ const bestSellers = [
   },
   {
     id: "8",
-    name: "Balo thêu hoa sen - Thanh lịch",
+    name: "Balo thời trang cao cấp - Thanh lịch",
     price: 2800000,
     image: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=600&q=80",
     hoverImage: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80",
@@ -255,9 +254,9 @@ export default function ProductGrid() {
   const quickViewData = quickViewProduct ? {
     ...quickViewProduct,
     reviewCount: quickViewProduct.reviews,
-    description: "Tác phẩm thêu tay tinh xảo được thực hiện bởi các nghệ nhân lành nghề với hơn 20 năm kinh nghiệm.",
+    description: "Sản phẩm chất lượng cao được thực hiện bởi các nghệ nhân lành nghề với hơn 20 năm kinh nghiệm.",
     inStock: true,
-    category: "Tranh thêu tay",
+    category: "Thủ công mỹ nghệ",
     gallery: [quickViewProduct.image, quickViewProduct.hoverImage || quickViewProduct.image],
   } : null;
 
@@ -273,8 +272,8 @@ export default function ProductGrid() {
           className="text-center mb-8"
         >
           <p className="text-sm tracking-[0.2em] text-[#b45309] uppercase mb-3 font-medium">Sản Phẩm Của Chúng Tôi</p>
-          <h2 className="text-3xl md:text-4xl font-serif text-[#1c1917] mb-4">Bộ Sưu Tập Thêu Tay</h2>
-          <p className="text-[#57534e] max-w-lg mx-auto">Khám phá những tác phẩm thêu tay tinh xảo, mang đậm giá trị văn hóa Việt Nam</p>
+          <h2 className="text-3xl md:text-4xl font-serif text-[#1c1917] mb-4">Bộ Sưu Tập Nổi Bật</h2>
+          <p className="text-[#57534e] max-w-lg mx-auto">Khám phá những sản phẩm chất lượng cao, được chọn lọc kỹ càng</p>
         </motion.div>
 
         {/* Tabs */}

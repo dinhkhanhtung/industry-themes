@@ -11,7 +11,7 @@ const menuItems = [
   { href: "/", label: "Trang chủ", icon: Home },
   { href: "/san-pham", label: "Shop", icon: Store },
   { href: "/gio-hang", label: "Giỏ hàng", icon: ShoppingBag, badge: true },
-  { href: "/tai-nguyen", label: "Mẫu thêu", icon: BookOpen },
+  { href: "/tai-nguyen", label: "Tài nguyên", icon: BookOpen },
   { href: "/bai-viet", label: "Tin tức", icon: BookOpen },
 ];
 
