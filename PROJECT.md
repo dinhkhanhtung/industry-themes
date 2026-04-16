@@ -573,7 +573,7 @@ IMGBB_KEY=xxx
 - Check build logs nếu có lỗi
 
 ### GitHub Repository
-- **Repo:** https://github.com/dinhkhanhtung/industry-themes
+- **Repo:** https://github.com/dinhkhanhtung/tranhhangkhoa
 - **Branch:** `master`
 - **Commit hiện tại:** a0b19c5
 
@@ -708,8 +708,8 @@ import { IconName } from "lucide-react";
 - **TailwindCSS Docs:** https://tailwindcss.com/docs
 - **Framer Motion Docs:** https://www.framer.com/motion
 - **shadcn/ui Docs:** https://ui.shadcn.com
-- **GitHub Repo:** https://github.com/dinhkhanhtung/industry-themes
-- **Vercel Deploy:** https://industry-themes.vercel.app
+- **GitHub Repo:** https://github.com/dinhkhanhtung/tranhhangkhoa
+- **Vercel Deploy:** https://tranhhangkhoa.vercel.app
 
 ---
 

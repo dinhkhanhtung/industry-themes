@@ -1,18 +1,8 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { IndustryType, IndustryTheme, getIndustryTheme } from "@/lib/industry-themes";
 
 export interface WebsiteSettings {
-  // Industry Theme Configuration
-  industry: IndustryType;           // Chọn ngành nghề
-  customColors?: {                  // Override màu tùy chỉnh (optional)
-    primary?: string;
-    secondary?: string;
-    accent?: string;
-  };
-  layoutStyle?: "rounded" | "square" | "modern";  // Style bo góc
-  
   brand: {
     name: string;
     slogan: string;
@@ -54,7 +44,7 @@ export interface WebsiteSettings {
   };
   modules: {
     courses: boolean;      // Hiển thị Khóa học
-    resources: boolean;    // Hiển thị Tài nguyên
+    resources: boolean;    // Hiển thị Tài nguyên/Mẫu thêu
     blog: boolean;         // Hiển thị Tin tức/Blog
   };
   popup: {
@@ -71,14 +61,10 @@ export interface WebsiteSettings {
 }
 
 const defaultSettings: WebsiteSettings = {
-  // Theme defaults
-  industry: "thoi-trang",           // Mặc định: thời trang (generic)
-  layoutStyle: "rounded",           // Mặc định: bo góc
-  
   brand: {
-    name: "Cửa Hàng",
-    slogan: "Chất lượng - Uy tín - Tận tâm",
-    description: "Website bán hàng chuyên nghiệp với đầy đủ tính năng.",
+    name: "Nghệ Nhân Thêu Tay",
+    slogan: "Tinh hoa thêu thùa - Di sản bản địa",
+    description: "Chuyên tranh thêu tay chất lượng cao, khóa học online và mẫu thêu miễn phí cho người yêu nghệ thuật.",
   },
   contact: {
     phone: "0982581222",
@@ -134,9 +120,6 @@ const STORAGE_KEY = "website_settings";
 interface WebsiteContextType {
   settings: WebsiteSettings;
   updateSettings: (newSettings: WebsiteSettings) => void;
-  // Theme helpers
-  currentTheme: IndustryTheme;      // Theme hiện tại (đã merge với custom)
-  getThemeValue: <K extends keyof IndustryTheme>(key: K) => IndustryTheme[K];
 }
 
 const WebsiteContext = createContext<WebsiteContextType | undefined>(undefined);
@@ -199,34 +182,8 @@ export function WebsiteProvider({ children }: { children: React.ReactNode }) {
     }
   }, [settings.seo, settings.brand.favicon, isLoaded]);
 
-  // Theme resolver: Merge base theme with custom colors
-  const currentTheme = React.useMemo((): IndustryTheme => {
-    const baseTheme = getIndustryTheme(settings.industry);
-    
-    // If no custom colors, return base theme
-    if (!settings.customColors) {
-      return baseTheme;
-    }
-    
-    // Merge with custom colors
-    return {
-      ...baseTheme,
-      colors: {
-        ...baseTheme.colors,
-        ...(settings.customColors.primary && { primary: settings.customColors.primary }),
-        ...(settings.customColors.secondary && { secondary: settings.customColors.secondary }),
-        ...(settings.customColors.accent && { accent: settings.customColors.accent }),
-      },
-    };
-  }, [settings.industry, settings.customColors]);
-
-  // Helper to get theme values
-  const getThemeValue = <K extends keyof IndustryTheme>(key: K): IndustryTheme[K] => {
-    return currentTheme[key];
-  };
-
   return (
-    <WebsiteContext.Provider value={{ settings, updateSettings, currentTheme, getThemeValue }}>
+    <WebsiteContext.Provider value={{ settings, updateSettings }}>
       {children}
     </WebsiteContext.Provider>
   );

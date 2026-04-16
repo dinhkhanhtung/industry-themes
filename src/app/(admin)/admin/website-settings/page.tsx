@@ -7,14 +7,13 @@ import {
   CreditCard, Truck, Search as SearchIcon,
   Facebook, Mail, MapPin, Zap, CheckCircle2,
   Layers, BookOpen, FileText, GraduationCap,
-  Gift, Store
+  Gift
 } from "lucide-react";
-import { getAllIndustries, IndustryType } from "@/lib/industry-themes";
 import { useWebsite } from "@/context/WebsiteContext";
 
 export default function WebsiteSettingsPage() {
   const { settings, updateSettings } = useWebsite();
-  const [activeTab, setActiveTab] = useState<"general" | "contact" | "seo" | "appearance" | "payment" | "shipping" | "modules" | "popup" | "industry">("general");
+  const [activeTab, setActiveTab] = useState<"general" | "contact" | "seo" | "appearance" | "payment" | "shipping" | "modules" | "popup">("general");
   const [tempSettings, setTempSettings] = useState(settings);
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
@@ -63,7 +62,6 @@ export default function WebsiteSettingsPage() {
             <nav className="space-y-1">
               {[
                 { id: "general", label: "Thương hiệu", icon: Globe },
-                { id: "industry", label: "Ngành nghề", icon: Store },
                 { id: "contact", label: "Liên hệ", icon: Phone },
                 { id: "seo", label: "Cấu hình SEO", icon: SearchIcon },
                 { id: "appearance", label: "Giao diện", icon: Palette },
@@ -163,128 +161,6 @@ export default function WebsiteSettingsPage() {
                       )}
                     </div>
                   </div>
-                </div>
-              </div>
-            )}
-
-            {/* Industry Theme Settings */}
-            {activeTab === "industry" && (
-              <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                <div className="flex items-center gap-4 pb-6 border-b border-[#e7e5e4]">
-                  <div className="w-12 h-12 bg-[#b45309]/10 rounded-2xl flex items-center justify-center text-[#b45309]">
-                    <Store size={24} />
-                  </div>
-                  <div>
-                    <h2 className="text-xl font-bold text-[#1c1917]">Ngành nghề & Giao diện</h2>
-                    <p className="text-sm text-[#57534e]">Chọn ngành nghề phù hợp để tự động áp dụng giao diện chuyên biệt</p>
-                  </div>
-                </div>
-
-                {/* Industry Selection */}
-                <div className="space-y-4">
-                  <label className="block text-sm font-bold text-[#1c1917]">Chọn ngành nghề</label>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {getAllIndustries().map((industry) => (
-                      <button
-                        key={industry.id}
-                        onClick={() => setTempSettings({
-                          ...tempSettings,
-                          industry: industry.id as IndustryType
-                        })}
-                        className={`p-4 rounded-xl border-2 transition-all text-left ${
-                          tempSettings.industry === industry.id
-                            ? "border-[#b45309] bg-[#b45309]/5"
-                            : "border-[#e7e5e4] hover:border-[#b45309]/50"
-                        }`}
-                      >
-                        <div className="font-bold text-[#1c1917]">{industry.name}</div>
-                        <div className="text-sm text-[#57534e] mt-1">{industry.description}</div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Custom Colors */}
-                <div className="space-y-4 pt-6 border-t border-[#e7e5e4]">
-                  <h3 className="text-lg font-bold text-[#1c1917]">Tùy chỉnh màu sắc</h3>
-                  <p className="text-sm text-[#57534e]">Ghi đè màu mặc định của ngành (tùy chọn)</p>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-[#57534e] mb-2">Màu chính</label>
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="color"
-                          value={tempSettings.customColors?.primary || "#b45309"}
-                          onChange={(e) => setTempSettings({
-                            ...tempSettings,
-                            customColors: {
-                              ...tempSettings.customColors,
-                              primary: e.target.value
-                            }
-                          })}
-                          className="w-10 h-10 rounded-lg border border-[#e7e5e4] cursor-pointer"
-                        />
-                        <span className="text-sm text-[#57534e]">
-                          {tempSettings.customColors?.primary || "Mặc định"}
-                        </span>
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-[#57534e] mb-2">Màu phụ</label>
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="color"
-                          value={tempSettings.customColors?.secondary || "#d97706"}
-                          onChange={(e) => setTempSettings({
-                            ...tempSettings,
-                            customColors: {
-                              ...tempSettings.customColors,
-                              secondary: e.target.value
-                            }
-                          })}
-                          className="w-10 h-10 rounded-lg border border-[#e7e5e4] cursor-pointer"
-                        />
-                        <span className="text-sm text-[#57534e]">
-                          {tempSettings.customColors?.secondary || "Mặc định"}
-                        </span>
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-[#57534e] mb-2">Màu nhấn</label>
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="color"
-                          value={tempSettings.customColors?.accent || "#f59e0b"}
-                          onChange={(e) => setTempSettings({
-                            ...tempSettings,
-                            customColors: {
-                              ...tempSettings.customColors,
-                              accent: e.target.value
-                            }
-                          })}
-                          className="w-10 h-10 rounded-lg border border-[#e7e5e4] cursor-pointer"
-                        />
-                        <span className="text-sm text-[#57534e]">
-                          {tempSettings.customColors?.accent || "Mặc định"}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Reset Button */}
-                <div className="pt-6 border-t border-[#e7e5e4]">
-                  <button
-                    onClick={() => setTempSettings({
-                      ...tempSettings,
-                      industry: "tranh-theu",
-                      customColors: undefined
-                    })}
-                    className="px-4 py-2 text-sm font-medium text-[#57534e] hover:text-[#1c1917] transition-colors"
-                  >
-                    Đặt lại về mặc định
-                  </button>
                 </div>
               </div>
             )}

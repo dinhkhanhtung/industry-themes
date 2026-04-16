@@ -1,7 +1,7 @@
 # ROADMAP - Website E-commerce & E-learning
 
 > File này ghi lại toàn bộ tính năng cần triển khai cho hệ thống
-> Cập nhật: 16/04/2026
+> Cập nhật: 14/04/2026
 
 ---
 
@@ -21,11 +21,6 @@
 - [x] Header với search, wishlist, account icons
 - [x] Quick view modal
 - [x] Admin sidebar layout
-- [x] **Thanh toán & Quản lý đơn hàng hoàn chỉnh**
-- [x] **Hệ thống học tập LMS (video, tiến trình)**
-- [x] **Wishlist với localStorage**
-- [x] **Admin CRUD sản phẩm, khóa học**
-- [x] **UI/UX improvements (micro-interactions, SEO)**
 
 ### 🔴 Đang Thiếu (Quan Trọng)
 - [ ] Hệ thống thanh toán (VNPay/Momo)
@@ -43,7 +38,7 @@
 
 ### 🟡 GIAI ĐOẠN 1: BÁN HÀNG HOÀN CHỈNH (2 tuần) - ĐANG THỰC HIỆN
 
-#### 1.1 Thanh Toán Tích Hợp ⭐⭐⭐⭐⭐ ✅ ĐÃ HOÀN THÀNH
+#### 1.1 Thanh Toán Tích Hợp ⭐⭐⭐⭐⭐ ✅
 - [x] **Chuyển khoản ngân hàng** - Hiển thị thông tin TK trong checkout, xác nhận thủ công qua Zalo
 - [x] **COD** (thanh toán khi nhận) - Giao hàng thu tiền
 - [x] Trang thanh toán checkout với chọn phương thức
@@ -51,40 +46,40 @@
 - [x] Cấu hình phương thức thanh toán trong WebsiteContext (bật/tắt)
 - [ ] ~~VNPay~~ (Bỏ qua - cần đăng ký doanh nghiệp, phức tạp)
 - [ ] ~~Momo~~ (Bỏ qua - cần hợp đồng, phí cao)
-- [ ] Chọn địa chỉ giao hàng (nhiều địa chỉ) - *Giai đoạn sau*
-- [ ] Mã giảm giá/ưu đãi - *Giai đoạn sau*
+- [ ] Chọn địa chỉ giao hàng (nhiều địa chỉ)
+- [ ] Mã giảm giá/ưu đãi
 
-#### 1.2 Quản Lý Đơn Hàng ⭐⭐⭐⭐⭐ ✅ ĐÃ HOÀN THÀNH CORE
+#### 1.2 Quản Lý Đơn Hàng ⭐⭐⭐⭐⭐ ✅
 **Khách hàng:**
 - [x] Trang "Đơn hàng của tôi" trong tài khoản
 - [x] Theo dõi trạng thái đơn: Chờ xác nhận → Đang chuẩn bị → Đang giao → Hoàn thành
-- [x] Xem chi tiết đơn hàng (modal trong trang tài khoản)
-- [ ] Hủy đơn hàng (trong 2h) - *Giai đoạn sau*
-- [ ] Đánh giá sản phẩm sau nhận hàng - *Giai đoạn 3*
+- [ ] Hủy đơn hàng (trong 2h)
+- [ ] Xem chi tiết đơn hàng (sản phẩm, giá, trạng thái) - *cần trang /don-hang/[id]*
+- [ ] Đánh giá sản phẩm sau nhận hàng
 
 **Admin:**
 - [x] Bảng điều khiển đơn hàng mới (real-time từ Firebase)
 - [x] Thống kê: Tổng đơn, chờ xử lý, đang giao, doanh thu
 - [x] Xem chi tiết đơn hàng (modal)
 - [x] Cập nhật trạng thái đơn hàng
-- [x] Lọc đơn hàng theo trạng thái, ngày
-- [ ] In phiếu giao hàng - *Giai đoạn sau*
+- [ ] Lọc đơn hàng theo trạng thái, ngày
+- [ ] In phiếu giao hàng
 
-#### 1.3 Admin Sản Phẩm Hoàn Chỉnh ⭐⭐⭐⭐ ✅ ĐÃ HOÀN THÀNH CORE
+#### 1.3 Admin Sản Phẩm Hoàn Chỉnh ⭐⭐⭐⭐ ✅
 - [x] Form thêm/sửa sản phẩm (UI dễ dùng, modal)
 - [x] Upload ảnh (imgbb API)
 - [x] Quản lý tồn kho số lượng
 - [x] Thống kê: Tổng, đang bán, hết hàng, nổi bật
 - [x] Xóa sản phẩm
-- [ ] Rich text editor mô tả (TinyMCE) - *Tùy chọn, giai đoạn sau*
-- [ ] Quản lý biến thể (màu, size) - *Giai đoạn sau*
-- [ ] Import/Export Excel - *Giai đoạn sau*
+- [ ] Rich text editor mô tả (TinyMCE) - *Tùy chọn*
+- [ ] Quản lý biến thể (màu, size)
+- [ ] Import/Export Excel
 
 ---
 
 ### GIAI ĐOẠN 2: HỆ THỐNG HỌC TẬP (2 tuần)
 
-#### 2.1 Trang Học Video Thực Tế ⭐⭐⭐⭐⭐ ✅ ĐÃ HOÀN THÀNH
+#### 2.1 Trang Học Video Thực Tế ⭐⭐⭐⭐⭐ ✅
 - [x] Trang "/hoc-tap" - danh sách khóa học đã đăng ký (Firebase)
 - [x] Trang học video: "/hoc-tap/[courseId]/[lessonId]"
 - [x] Video player với controls
@@ -94,7 +89,7 @@
 - [x] Chuyển bài học (previous/next)
 - [x] Resume: tự động vào bài đang học dở
 
-#### 2.2 Admin Khóa Học ⭐⭐⭐⭐ ✅ ĐÃ HOÀN THÀNH
+#### 2.2 Admin Khóa Học ⭐⭐⭐⭐ ✅
 - [x] CRUD khóa học (Firebase)
 - [x] Upload ảnh thumbnail
 - [x] Quản lý bài học (thêm/sửa/xóa)
@@ -183,173 +178,6 @@
 - [ ] Gallery tác phẩm học viên
 - [ ] Bình chọn "Tác phẩm của tháng"
 - [ ] Chia sẻ kinh nghiệm, tips
-
----
-
-## 🎨 GIAI ĐOẠN 5: INDUSTRY THEME + DEMO SYSTEM (MỚI - 2 tuần)
-
-### 🎯 Mục Tiêu
-- 1 codebase → N ngành nghề (tranh thêu, đồ gỗ, thời trang, mỹ phẩm...)
-- Khách xem demo không cần setup thủ công
-- Auto-generate demo site theo ngành
-
-### 5.1 Industry Theme System ⭐⭐⭐⭐⭐
-
-#### GIAI ĐOẠN 5.1.1: Thiết kế Theme Presets (2-3 ngày) ✅ ĐÃ HOÀN THÀNH - 19 NGÀNH
-- [x] Nghiên cứu UI/UX Pro Max cho từng ngành
-- [x] Tạo 19 industry presets đầy đủ:
-  
-  **Nghệ thuật & Thủ công:**
-  - [x] `tranh-theu` (màu #b45309, style tinh tế)
-  - [x] `do-go` (màu #8B4513, style mạnh mẽ)
-  - [x] `gom-su` (màu #b91c1c, đỏ gốm Bát Tràng)
-  - [x] `trang-suc` (màu #d97706, vàng gold)
-  
-  **Thời trang & Làm đẹp:**
-  - [x] `thoi-trang` (màu #ec4899, style hiện đại)
-  - [x] `my-pham` (màu #a855f7, style sang trọng)
-  - [x] `giay-dep` (màu #1f2937, xám đen)
-  
-  **Gia dụng & Nội thất:**
-  - [x] `do-gia-dung` (màu #059669, style sạch sẽ)
-  - [x] `noi-that` (màu #1e3a8a, xanh navy)
-  - [x] `den-trang-tri` (màu #f59e0b, vàng ánh đèn)
-  
-  **Công nghệ & Điện tử:**
-  - [x] `do-dien-tu` (màu #2563eb, style tech)
-  - [x] `phu-kien-cong-nghe` (màu #0ea5e9, xanh sky)
-  
-  **Ẩm thực & Đồ uống:**
-  - [x] `am-thuc` (màu #ea580c, cam đỏ)
-  - [x] `do-uong` (màu #92400e, nâu cafe)
-  
-  **Sức khỏe & Y tế:**
-  - [x] `suc-khoe` (màu #16a34a, xanh lá organic)
-  - [x] `y-te` (màu #0d9488, xanh teal)
-  
-  **Giáo dục & Sách:**
-  - [x] `giao-duc` (màu #4f46e5, indigo)
-  - [x] `sach-vpp` (màu #7c3aed, tím)
-  
-  **Du lịch & Thể thao:**
-  - [x] `du-lich` (màu #0891b2, xanh biển)
-  - [x] `the-thao` (màu #ea580c, cam năng động)
-  
-  **Nông nghiệp & Thiên nhiên:**
-  - [x] `nong-san` (màu #65a30d, xanh lá tươi)
-  - [x] `cay-canh` (màu #15803d, xanh thiên nhiên)
-  
-  **Tùy chỉnh:**
-  - [x] `custom` (tùy chỉnh hoàn toàn)
-- [x] Mỗi preset có:
-  - [x] Color palette (primary, secondary, accent)
-  - [x] Typography scale
-  - [x] Border radius strategy
-  - [x] Shadow/elevation style
-  - [x] Navigation structure
-  - [x] Product card style
-
-#### GIAI ĐOẠN 5.1.2: Update WebsiteContext (1 ngày) ✅ ĐÃ HOÀN THÀNH
-- [x] Thêm field `industry` vào WebsiteSettings interface
-- [x] Thêm `customColors` override
-- [x] Thêm `layoutStyle` (rounded/square/modern)
-- [x] Tạo theme resolver function (useMemo)
-- [x] Update localStorage persistence
-- [x] Thêm `currentTheme` và `getThemeValue` vào context
-
-#### GIAI ĐOẠN 5.1.3: Update Components (2 ngày)
-**Tuần tự để tránh lỗi:**
-- [ ] Globals.css - CSS variables cho theme
-- [ ] Header.tsx - Dynamic navigation
-- [ ] ProductCard.tsx - Dynamic styling
-- [ ] HeroBanner.tsx - Dynamic layout
-- [ ] Footer.tsx - Dynamic content
-- [ ] Các trang còn lại
-
-#### GIAI ĐOẠN 5.1.4: Admin UI (2 ngày)
-- [ ] Thêm tab "Industry Theme" trong Website Settings
-- [ ] Dropdown chọn industry preset
-- [ ] Color picker cho custom override
-- [ ] Layout style selector (card style, shadow, border radius)
-- [ ] Live preview trong admin
-- [ ] Reset to default button
-
-### 5.2 Demo System ⭐⭐⭐⭐
-
-#### GIAI ĐOẠN 5.2.1: URL Strategy (1 ngày)
-**Quyết định: Dùng URL-based để tránh quá tải API**
-```
-/demo?industry=do-go&preset=premium
-/demo?industry=thoi-trang&preset=minimal
-```
-
-**Ưu điểm:**
-- Không cần subdomain/wildcard DNS
-- 1 Vercel project = N demo
-- Không gọi API liên tục
-- Dễ cache
-
-#### GIAI ĐOẠN 5.2.2: Demo Data Generator (2 ngày)
-**Tách biệt hoàn toàn khỏi production data:**
-- [ ] Tạo `demo-data/` folder
-- [ ] Mỗi ngành có file JSON riêng:
-  - `demo-data/do-go/products.json`
-  - `demo-data/do-go/categories.json`
-  - `demo-data/do-go/settings.json`
-- [ ] Mock data cho 6-8 sản phẩm/ngành
-- [ ] Ảnh từ Unsplash (không cần upload)
-
-#### GIAI ĐOẠN 5.2.3: Demo Page Implementation (2 ngày)
-- [ ] Tạo `/app/demo/page.tsx`
-- [ ] Đọc query params (?industry=xxx)
-- [ ] Override WebsiteContext với demo data
-- [ ] Override ProductGrid với demo products
-- [ ] Thêm banner "Đây là demo - Liên hệ để mua"
-- [ ] Thêm nút "Mua giao diện này"
-
-#### GIAI ĐOẠN 5.2.4: Demo Gallery (1 ngày)
-- [ ] Trang `/demo` hiển thị tất cả industries
-- [ ] Grid preview các theme
-- [ ] Click để xem demo đầy đủ
-- [ ] Form đăng ký xem demo
-
-### 5.3 Rate Limiting & Performance ⭐⭐⭐⭐
-
-**Quan trọng để tránh quá tải:**
-- [ ] Static generation cho demo pages (ISR)
-- [ ] Cache demo data 24h
-- [ ] Image optimization (WebP, lazy load)
-- [ ] Debounce API calls trong admin
-- [ ] Rate limit: Max 10 demo requests/phút/IP
-
----
-
-## ⚠️ KẾ HOẠCH TRIỂN KHAI TỪNG GIAI ĐOẠN
-
-### Nguyên tắc tránh quá tải:
-1. **Không gọi API liên tục** - Dùng local state, batch updates
-2. **Static generation** - ISR cho demo pages
-3. **Client-side only** - localStorage, không SSR
-4. **Lazy loading** - Code split cho từng theme
-5. **Debounce** - Admin inputs 300ms
-
-### Thứ tự ưu tiên:
-**Tuần 1:**
-- Giai đoạn 5.1.1: Theme presets (nghiên cứu + design)
-- Giai đoạn 5.1.2: WebsiteContext update
-
-**Tuần 2:**
-- Giai đoạn 5.1.3: Update components (tuần tự)
-- Giai đoạn 5.1.4: Admin UI
-
-**Tuần 3:**
-- Giai đoạn 5.2.1: URL strategy
-- Giai đoạn 5.2.2: Demo data generator
-
-**Tuần 4:**
-- Giai đoạn 5.2.3: Demo page implementation
-- Giai đoạn 5.2.4: Demo gallery
-- Testing & Optimization
 
 ---
 

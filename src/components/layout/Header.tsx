@@ -7,29 +7,98 @@ import { Search, ShoppingBag, Menu, X, ChevronDown, Heart, User } from "lucide-r
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useWebsite } from "@/context/WebsiteContext";
-import { IndustryTheme } from "@/lib/industry-themes";
 
-// Generate navigation links dynamically from theme
-const getNavLinks = (settings: any, theme: IndustryTheme) => {
-  // Get categories from theme navigation
-  const themeCategories = theme.navigation.categories;
-  
-  // Build product nav items from theme categories
-  const productNavItems = themeCategories.map((category, index) => ({
-    href: `/san-pham?category=${encodeURIComponent(category.title.toLowerCase().replace(/\s+/g, '-'))}`,
-    label: category.title,
-    megaMenu: {
-      image: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=600&q=80",
-      imageTitle: `Bộ Sưu Tập ${category.title}`,
-      columns: category.items.map((item, itemIndex) => ({
-        title: item,
-        items: themeCategories[(index + itemIndex + 1) % themeCategories.length]?.items.slice(0, 3) || ["Sản phẩm 1", "Sản phẩm 2", "Sản phẩm 3"]
-      }))
-    }
-  }));
-
+// Danh mục sản phẩm - sẽ được lọc dựa trên settings trong component
+const getNavLinks = (settings: any) => {
   return [
-    ...productNavItems.slice(0, 4), // Max 4 product categories with mega menu
+    {
+      href: "/san-pham?category=tranh-theu-hoa",
+      label: "Tranh Thêu Hoa",
+      megaMenu: {
+        image: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=600&q=80",
+        imageTitle: "Bộ Sưu Tập Hoa Sen",
+        columns: [
+          {
+            title: "Hoa Sen",
+            items: ["Hoa Sen Trắng", "Hoa Sen Hồng", "Hoa Sen Vàng"]
+          },
+          {
+            title: "Hoa Đào",
+            items: ["Hoa Đào Nhí", "Hoa Đào Cánh Đôi", "Hoa Đào Đầy"]
+          },
+          {
+            title: "Hoa Mẫu Đơn",
+            items: ["Mẫu Đơn Đỏ", "Mẫu Đơn Trắng", "Mẫu Đơn Hồng"]
+          }
+        ]
+      }
+    },
+    {
+      href: "/san-pham?category=tranh-theu-chim",
+      label: "Tranh Thêu Chim",
+      megaMenu: {
+        image: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=600&q=80",
+        imageTitle: "Bộ Sưu Tập Chim",
+        columns: [
+          {
+            title: "Chim Hạc",
+            items: ["Hạc Đơn", "Hạc Đôi", "Hạc Bay"]
+          },
+          {
+            title: "Chim Sẻ",
+            items: ["Sẻ Đôi", "Sẻ Bầy", "Sẻ Lá"]
+          },
+          {
+            title: "Tùng Hạc",
+            items: ["Tùng Hạc Vàng", "Tùng Hạc Bạc", "Tùng Hạc Đỏ"]
+          }
+        ]
+      }
+    },
+    {
+      href: "/san-pham?category=tranh-phong-canh",
+      label: "Phong Cảnh",
+      megaMenu: {
+        image: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=600&q=80",
+        imageTitle: "Bộ Sưu Tập Phong Cảnh",
+        columns: [
+          {
+            title: "Sơn Thủy",
+            items: ["Thác Nước", "Dòng Sông", "Hồ Tịnh"]
+          },
+          {
+            title: "Làng Quê",
+            items: ["Nhà Làng", "Cánh Đồng", "Cây Cổ Thụ"]
+          },
+          {
+            title: "Phố Cổ",
+            items: ["Phố Hội An", "Phố Cổ Hà Nội", "Phố Sài Gòn"]
+          }
+        ]
+      }
+    },
+    {
+      href: "/san-pham?category=tranh-bieu-tuong",
+      label: "Biểu Tượng",
+      megaMenu: {
+        image: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=600&q=80",
+        imageTitle: "Bộ Sưu Tập Biểu Tượng",
+        columns: [
+          {
+            title: "Phật",
+            items: ["Phật A Di Đà", "Phật Quan Âm", "Phật Thích Ca"]
+          },
+          {
+            title: "Thần Tài",
+            items: ["Thần Tài Đất", "Thần Tài Nước", "Thần Tài Lửa"]
+          },
+          {
+            title: "Long Phụng",
+            items: ["Rồng Vàng", "Phượng Hoàng", "Long Phụng"]
+          }
+        ]
+      }
+    },
     { href: "/gioi-thieu", label: "Giới thiệu" },
     ...(settings.modules?.courses !== false ? [{ href: "/khoa-hoc", label: "Khóa học" }] : []),
     ...(settings.modules?.resources !== false ? [{ href: "/tai-nguyen", label: "Tài nguyên" }] : []),
@@ -44,10 +113,7 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
   const { cartCount } = useCart();
-  const { settings, currentTheme } = useWebsite();
-  
-  // Generate navigation links based on current theme
-  const navLinks = getNavLinks(settings, currentTheme);
+  const { settings } = useWebsite();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -129,7 +195,7 @@ export default function Header() {
 
           {/* Row 2: Desktop Navigation Menu (Below Logo) */}
           <nav className="hidden lg:flex items-center justify-center space-x-8 py-3 border-t border-[#e7e5e4]/50">
-            {navLinks.map((link: any) => (
+            {getNavLinks(settings).map((link: any) => (
               <div
                 key={link.href}
                 className="relative group"
@@ -271,7 +337,7 @@ export default function Header() {
               
               {/* Sidebar Navigation */}
               <nav className="flex flex-col">
-                {navLinks.map((link: any) => (
+                {getNavLinks(settings).map((link: any) => (
                   <Link
                     key={link.href}
                     href={link.href}
