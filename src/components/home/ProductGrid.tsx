@@ -107,7 +107,8 @@ interface Product {
   badge?: string;
   rating: number;
   reviews: number;
-  colors: string[];
+  colors?: string[];
+  category?: string;
 }
 
 interface ProductCardProps {
@@ -210,15 +211,17 @@ function ProductCard({ product, onQuickView }: ProductCardProps) {
       {/* Product Info - Outside image container */}
       <Link href={`/san-pham/${product.id}`} className="block text-center px-2">
         {/* Color Swatches */}
-        <div className="flex justify-center gap-2 mb-3">
-          {product.colors.map((color, idx) => (
-            <div
-              key={idx}
-              className="w-5 h-5 rounded-full border-2 border-white shadow-md cursor-pointer hover:scale-125 transition-transform duration-300"
-              style={{ backgroundColor: color }}
-            />
-          ))}
-        </div>
+        {product.colors && (
+          <div className="flex justify-center gap-2 mb-3">
+            {product.colors.map((color, idx) => (
+              <div
+                key={idx}
+                className="w-5 h-5 rounded-full border-2 border-white shadow-md cursor-pointer hover:scale-125 transition-transform duration-300"
+                style={{ backgroundColor: color }}
+              />
+            ))}
+          </div>
+        )}
         
         {/* Rating */}
         <div className="flex items-center justify-center gap-1.5 mb-2">
