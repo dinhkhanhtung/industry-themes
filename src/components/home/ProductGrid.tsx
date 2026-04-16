@@ -123,7 +123,7 @@ function ProductCard({ product, onQuickView }: ProductCardProps) {
     if (typeof window === "undefined") return;
     const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
     setIsWishlisted(wishlist.includes(product.id));
-  }, [product.id]);
+  }, []);
 
   const toggleWishlist = (e: React.MouseEvent) => {
     e.stopPropagation();
