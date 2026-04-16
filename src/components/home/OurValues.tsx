@@ -9,7 +9,7 @@ const values = [
     title: "Thiết Kế Ý Nghĩa",
     subtitle: "Meaningful Designs",
     description: "Phía sau mỗi sản phẩm là một câu chuyện đầy cảm hứng đang chờ được kể. Chúng tôi tin rằng nghệ thuật thêu tay không chỉ là trang trí, mà còn là ngôn ngữ truyền tải giá trị văn hóa và tâm hồn.",
-    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
     reverse: false,
   },
   {
@@ -17,7 +17,7 @@ const values = [
     title: "Cảm Hứng Thiêng Liêng",
     subtitle: "Divinely-Inspired",
     description: "Lấy cảm hứng từ vẻ đẹp của thiên nhiên và nghệ thuật truyền thống, mọi thiết kế của chúng tôi đều bắt nguồn từ di sản văn hóa phong phú. Mỗi đường kim mũi chỉ đều mang theo sự tôn kính đối với nghệ thuật cổ truyền.",
-    image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1615184697985-c9bde1b07da7?w=800&q=80",
     reverse: true,
   },
   {
@@ -25,7 +25,7 @@ const values = [
     title: "Chất Lượng Thủ Công",
     subtitle: "Quality Craftsmanship",
     description: "Làm việc với các nghệ nhân địa phương tài hoa, vẻ đẹp của những sản phẩm thủ công cao cấp của chúng tôi sẽ vượt qua thử thách của thời gian. Mỗi tác phẩm đều là kết tinh của sự kiên nhẫn và tâm huyết.",
-    image: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&q=80",
+    image: "https://images.unsplash.com/photo-15992693474448-2cb9d6c8b4f5?w=800&q=80",
     reverse: false,
   },
 ];

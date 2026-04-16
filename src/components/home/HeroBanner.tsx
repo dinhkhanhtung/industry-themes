@@ -9,7 +9,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const slides = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1920&q=80",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80",
     title: "Nghệ Thuật Thêu Tay",
     subtitle: "Truyền thống Việt Nam",
     description: "Mỗi đường kim mũi chỉ đều mang theo tâm huyết và kỹ nghệ được truyền lại qua nhiều thế hệ.",
@@ -18,7 +18,7 @@ const slides = [
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=1920&q=80",
+    image: "https://images.unsplash.com/photo-1615184697985-c9bde1b07da7?w=1920&q=80",
     title: "Khóa Học Thêu Online",
     subtitle: "Học từ cơ bản đến nâng cao",
     description: "Trải nghiệm nghệ thuật thêu tay với các khóa học được thiết kế bài bản.",
@@ -27,7 +27,7 @@ const slides = [
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1561839561-b13bcfe95249?w=1920&q=80",
+    image: "https://images.unsplash.com/photo-15992693474448-2cb9d6c8b4f5?w=1920&q=80",
     title: "Phụ Kiện Thêu Cao Cấp",
     subtitle: "Khung, chỉ, kim chất lượng",
     description: "Tất cả dụng cụ bạn cần để bắt đầu hành trình thêu tay.",

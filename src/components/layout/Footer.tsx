@@ -26,10 +26,10 @@ const footerLinks = {
 
 // Default support links (fallback if no posts)
 const defaultSupportLinks = [
-  { name: "Hướng Dẫn Mua Hàng", href: "#" },
-  { name: "Chính Sách Đổi Trả", href: "#" },
-  { name: "Vận Chuyển & Giao Hàng", href: "#" },
-  { name: "Câu Hỏi Thường Gặp", href: "#" },
+  { name: "Hướng Dẫn Mua Hàng", href: "/huong-dan-mua-hang" },
+  { name: "Chính Sách Đổi Trả", href: "/chinh-sach-doi-tra" },
+  { name: "Vận Chuyển & Giao Hàng", href: "/van-chuyen" },
+  { name: "Câu Hỏi Thường Gặp", href: "/cau-hoi-thuong-gap" },
 ];
 
 interface SupportPost {
