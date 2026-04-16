@@ -136,7 +136,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return (
       <div className="min-h-screen bg-[#fffbf5] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-8 h-8 border-2 border-[#b45309] border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-2 border-[var(--color-primary)] border-t-transparent rounded-full animate-spin" />
           <p className="text-sm text-[#57534e]">Đang kiểm tra đăng nhập...</p>
         </div>
       </div>
@@ -181,7 +181,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Logo */}
         <div className="h-20 flex items-center px-6 border-b border-[#e7e5e4]/60 bg-[#fffbf5]/50">
           <Link href="/admin" className="flex items-center gap-3 overflow-hidden group">
-            <div className="w-10 h-10 bg-[#b45309] rounded-xl flex items-center justify-center text-white shadow-lg shadow-[#b45309]/20 group-hover:scale-110 transition-transform duration-300">
+            <div className="w-10 h-10 bg-[var(--color-primary)] rounded-xl flex items-center justify-center text-white shadow-lg shadow-[var(--color-primary)]/20 group-hover:scale-110 transition-transform duration-300">
               <LayoutDashboard size={22} />
             </div>
             <AnimatePresence mode="wait">
@@ -192,7 +192,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   exit={{ opacity: 0, x: -10 }}
                   className="flex flex-col"
                 >
-                  <span className="font-bold text-[#1c1917] text-sm tracking-wider uppercase">ADMIN</span>
+                  <span className="font-bold text-[var(--color-dark)] text-sm tracking-wider uppercase">ADMIN</span>
                   <span className="text-[10px] text-[#57534e] font-medium tracking-[0.2em] uppercase">Admin Panel</span>
                 </motion.div>
               )}
@@ -237,7 +237,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 px-3 py-2 rounded-xl text-[13px] font-semibold transition-all duration-200 group text-[#57534e] hover:bg-[#b45309]/5 hover:text-[#b45309]"
+                      className="flex items-center gap-3 px-3 py-2 rounded-xl text-[13px] font-semibold transition-all duration-200 group text-[#57534e] hover:bg-[var(--color-primary)]/5 hover:text-[var(--color-primary)]"
                     >
                       {linkContent}
                     </a>
@@ -247,8 +247,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                       href={item.href}
                       className={`flex items-center gap-3 px-3 py-2 rounded-xl text-[13px] font-semibold transition-all duration-200 group ${
                         isActive
-                          ? "bg-[#b45309] text-white shadow-md shadow-[#b45309]/20"
-                          : "text-[#57534e] hover:bg-[#b45309]/5 hover:text-[#b45309]"
+                          ? "bg-[var(--color-primary)] text-white shadow-md shadow-[var(--color-primary)]/20"
+                          : "text-[#57534e] hover:bg-[var(--color-primary)]/5 hover:text-[var(--color-primary)]"
                       }`}
                     >
                       {linkContent}
@@ -292,18 +292,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <div className="flex items-center gap-6">
             <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="p-2.5 hover:bg-[#f5f5f4] rounded-xl text-[#1c1917] transition-all active:scale-90"
+              className="p-2.5 hover:bg-[#f5f5f4] rounded-xl text-[var(--color-dark)] transition-all active:scale-90"
             >
               {isSidebarOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
 
             {/* Breadcrumbs */}
             <nav className="hidden md:flex items-center gap-3 text-[13px] font-medium text-[#57534e]">
-              <Link href="/admin" className="hover:text-[#b45309] transition-colors">Admin</Link>
+              <Link href="/admin" className="hover:text-[var(--color-primary)] transition-colors">Admin</Link>
               {pathname !== "/admin" && pathname !== "/admin/login" && (
                 <>
                   <ChevronRight size={14} className="text-[#a8a29e]" />
-                  <span className="text-[#1c1917] capitalize font-bold tracking-tight bg-[#b45309]/5 px-3 py-1 rounded-full">
+                  <span className="text-[var(--color-dark)] capitalize font-bold tracking-tight bg-[var(--color-primary)]/5 px-3 py-1 rounded-full">
                     {pathname.split("/").pop()?.replace(/-/g, " ")}
                   </span>
                 </>
