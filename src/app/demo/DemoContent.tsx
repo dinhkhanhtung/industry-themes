@@ -6,6 +6,7 @@ import { ArrowLeft, ShoppingCart, Phone } from "lucide-react";
 import { useMemo } from "react";
 import { IndustryType, getIndustryTheme, IndustryTheme } from "@/lib/industry-themes";
 import { WebsiteSettings } from "@/context/WebsiteContext";
+import { IndustryHero } from "@/components/industry-layouts/HeroLayouts";
 
 // Demo data cho từng ngành
 const demoData: Record<IndustryType, { brandName: string; slogan: string; products: any[] }> = {
@@ -282,45 +283,14 @@ export default function DemoContent() {
         </div>
       </header>
 
-      {/* Hero */}
-      <section 
-        className="py-12 sm:py-20"
-        style={{ backgroundColor: theme.colors.background }}
-      >
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 
-            className="text-3xl sm:text-4xl font-bold mb-4"
-            style={{ 
-              fontFamily: theme.typography.headingFont,
-              color: theme.colors.text.primary 
-            }}
-          >
-            Khám phá sản phẩm {theme.name}
-          </h2>
-          <p 
-            className="text-lg mb-8 max-w-2xl mx-auto"
-            style={{ color: theme.colors.text.secondary }}
-          >
-            Giao diện được thiết kế chuyên biệt cho ngành {theme.name.toLowerCase()} 
-            với tông màu {theme.colors.primary}
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {theme.navigation.categories.slice(0, 3).map((cat, idx) => (
-              <span 
-                key={idx}
-                className="px-4 py-2 rounded-full text-sm font-medium"
-                style={{ 
-                  backgroundColor: theme.colors.surface,
-                  color: theme.colors.text.primary,
-                  border: `1px solid ${theme.colors.border}`
-                }}
-              >
-                {cat.title}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Dynamic Hero - Thay đổi theo ngành */}
+      <IndustryHero 
+        industry={validIndustry}
+        brandName={data.brandName}
+        slogan={data.slogan}
+        theme={theme}
+        onCtaClick={() => window.scrollTo({ top: 600, behavior: 'smooth' })}
+      />
 
       {/* Products */}
       <section className="py-12 max-w-7xl mx-auto px-4">

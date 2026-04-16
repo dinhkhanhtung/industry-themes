@@ -12,39 +12,46 @@
  */
 
 export type IndustryType = 
-  // Nghệ thuật & Thủ công
-  | "tranh-theu"           // Tranh thêu tay
-  | "do-go"               // Đồ gỗ mỹ nghệ
-  | "gom-su"              // Gốm sứ thủ công
-  | "trang-suc"           // Trang sức handmade
-  // Thời trang & Làm đẹp
-  | "thoi-trang"          // Thời trang
-  | "my-pham"            // Mỹ phẩm
-  | "giay-dep"           // Giày dép, túi xách
-  // Gia dụng & Nội thất
-  | "do-gia-dung"        // Đồ gia dụng
-  | "noi-that"           // Nội thất
-  | "den-trang-tri"      // Đèn trang trí
-  // Công nghệ & Điện tử
-  | "do-dien-tu"         // Đồ điện tử
-  | "phu-kien-cong-nghe" // Phụ kiện công nghệ
-  // Ẩm thực & Đồ uống
-  | "am-thuc"            // Ẩm thực, đặc sản
-  | "do-uong"            // Đồ uống, cà phê, trà
-  // Sức khỏe & Y tế
-  | "suc-khoe"           // Thực phẩm chức năng
-  | "y-te"               // Thiết bị y tế
-  // Giáo dục & Sách
-  | "giao-duc"           // Khóa học, đào tạo
-  | "sach-vpp"          // Sách, văn phòng phẩm
-  // Du lịch & Thể thao
-  | "du-lich"            // Du lịch, homestay
-  | "the-thao"           // Dụng cụ thể thao
-  // Nông nghiệp & Thiên nhiên
-  | "nong-san"           // Nông sản sạch
-  | "cay-canh"           // Cây cảnh, hoa
-  // Tùy chỉnh
-  | "custom";
+  // === NHÓM 1: THỦ CÔNG MỸ NGHỆ (4 ngành) ===
+  | "tranh-theu"         // Tranh thêu tay (tinh tế, nghệ thuật)
+  | "do-go"              // Đồ gỗ mỹ nghệ (mạnh mẽ, cổ điển)
+  | "gom-su"             // Gốm sứ thủ công (truyền thống, nghệ thuật)
+  | "trang-suc"          // Trang sức handmade (sang trọng, tinh xảo)
+  
+  // === NHÓM 2: THỜI TRANG & LÀM ĐẸP (3 ngành) ===
+  | "thoi-trang"         // Thời trang & May mặc (trendy, hiện đại)
+  | "my-pham"            // Mỹ phẩm & Làm đẹp (sang trọng, nữ tính)
+  | "giay-dep"           // Giày dép, Túi xách (trẻ trung, năng động)
+  
+  // === NHÓM 3: GIA DỤNG & NỘI THẤT (3 ngành) ===
+  | "do-gia-dung"        // Đồ gia dụng (hiện đại, tiện nghi)
+  | "noi-that"           // Nội thất (sang trọng, ấm cúng)
+  | "den-trang-tri"      // Đèn trang trí (nghệ thuật, lung linh)
+  
+  // === NHÓM 4: CÔNG NGHỆ & ĐIỆN TỬ (2 ngành) ===
+  | "do-dien-tu"         // Đồ điện tử (hiện đại, tech)
+  | "phu-kien-cong-nghe" // Phụ kiện công nghệ (tối giản, chuyên nghiệp)
+  
+  // === NHÓM 5: ẨM THỰC & ĐỒ UỐNG (2 ngành) ===
+  | "am-thuc"            // Ẩm thực, đặc sản (ấm cúng, truyền thống)
+  | "do-uong"            // Đồ uống, cà phê (trẻ trung, tươi mới)
+  
+  // === NHÓM 6: SỨC KHỎE & Y TẾ (2 ngành) ===
+  | "suc-khoe"           // Thực phẩm chức năng (tự nhiên, tin cậy)
+  | "y-te"               // Thiết bị y tế (chuyên nghiệp, sạch sẽ)
+  
+  // === NHÓM 7: GIÁO DỤC & SÁCH (2 ngành) ===
+  | "giao-duc"           // Khóa học, đào tạo (tri thức, chuyên nghiệp)
+  | "sach-vpp"          // Sách, văn phòng phẩm (trí tuệ, sáng tạo)
+  
+  // === NHÓM 8: DU LỊCH & THỂ THAO (3 ngành) ===
+  | "du-lich"            // Du lịch, homestay (phiêu lưu, thư giãn)
+  | "the-thao"           // Dụng cụ thể thao (năng động, khỏe mạnh)
+  | "nong-san"           // Nông sản sạch (tự nhiên, tươi ngon)
+  | "cay-canh"           // Cây cảnh, hoa (xanh mát, thư giãn)
+  
+  // === TÙY CHỈNH ===
+  | "custom";            // Tùy chỉnh theo yêu cầu
 
 export interface IndustryTheme {
   id: IndustryType;
@@ -160,7 +167,7 @@ export interface IndustryTheme {
 }
 
 // ============================================
-// PRESET 1: TRANH THÊU TAY (Gốc - Giữ nguyên)
+// PRESET 1: TRANH THÊU TAY (Tinh tế, nghệ thuật)
 // ============================================
 export const tranhTheuTheme: IndustryTheme = {
   id: "tranh-theu",
@@ -1521,7 +1528,7 @@ export const customTheme: IndustryTheme = {
 // EXPORT ALL THEMES - ĐẦY ĐỦ 19 NGÀNH
 // ============================================
 export const industryThemes: Record<IndustryType, IndustryTheme> = {
-  // Nghệ thuật & Thủ công
+  // === NHÓM 1: THỦ CÔNG MỸ NGHỆ ===
   "tranh-theu": tranhTheuTheme,
   "do-go": doGoTheme,
   "gom-su": gomSuTheme,
