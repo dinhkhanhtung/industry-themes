@@ -17,12 +17,12 @@ const notoSans = Noto_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Tranh Thêu Tay | Khóa Học Thêu & Phụ Kiện Chất Lượng Cao",
-  description: "Chuyên tranh thêu tay thủ công tinh xảo, khóa học thêu từ cơ bản đến nâng cao, và phụ kiện thêu cao cấp. Kế thừa tinh hoa nghệ thuật thêu truyền thống Việt Nam.",
-  keywords: "tranh thêu tay, thêu tay thủ công, khóa học thêu, phụ kiện thêu, tranh thêu nghệ thuật, tranh thêu truyền thống",
-  authors: [{ name: "Nghệ Nhân Thêu Tay" }],
-  creator: "Nghệ Nhân Thêu Tay",
-  publisher: "Nghệ Nhân Thêu Tay",
+  title: "Website Bán Hàng | Giải Pháp E-commerce",
+  description: "Nền tảng website bán hàng đa ngành nghề với 19 theme chuyên biệt. Hỗ trợ cửa hàng, khóa học online và quản lý đơn hàng.",
+  keywords: "website bán hàng, e-commerce, cửa hàng online, khóa học online, quản lý đơn hàng",
+  authors: [{ name: "Industry Themes" }],
+  creator: "Industry Themes",
+  publisher: "Industry Themes",
   formatDetection: {
     email: false,
     address: false,
@@ -30,10 +30,10 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(process.env.NEXTAUTH_URL || "https://localhost:3000"),
   openGraph: {
-    title: "Tranh Thêu Tay | Khóa Học Thêu & Phụ Kiện Chất Lượng Cao",
-    description: "Chuyên tranh thêu tay thủ công tinh xảo, khóa học thêu từ cơ bản đến nâng cao, và phụ kiện thêu cao cấp.",
+    title: "Website Bán Hàng | Giải Pháp E-commerce",
+    description: "Nền tảng website bán hàng đa ngành nghề với 19 theme chuyên biệt.",
     url: process.env.NEXTAUTH_URL || "https://localhost:3000",
-    siteName: "Nghệ Nhân Thêu Tay",
+    siteName: "Industry Themes",
     locale: "vi_VN",
     type: "website",
     images: [

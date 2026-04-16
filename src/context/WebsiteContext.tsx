@@ -76,9 +76,9 @@ const defaultSettings: WebsiteSettings = {
   layoutStyle: "rounded",           // Mặc định: bo góc
   
   brand: {
-    name: "Nghệ Nhân Thêu Tay",
-    slogan: "Tinh hoa thêu thùa - Di sản bản địa",
-    description: "Chuyên tranh thêu tay chất lượng cao, khóa học online và mẫu thêu miễn phí cho người yêu nghệ thuật.",
+    name: "Cửa Hàng",
+    slogan: "Chất lượng - Uy tín - Tận tâm",
+    description: "Website bán hàng chuyên nghiệp với đầy đủ tính năng.",
   },
   contact: {
     phone: "0982581222",
